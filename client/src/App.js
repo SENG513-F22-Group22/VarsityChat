@@ -1,6 +1,7 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 import Home from "./components/Home"
 import socketIO from "socket.io-client"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const socket = socketIO.connect("http://localhost:4000")
 function App() {

@@ -8,14 +8,14 @@ import {
 } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom"
 
-const Home = ({ socket }) => {
+const Discover = ({ socket }) => {
 
   return (
     // 'html' code goes here 
     <>
       <Container>
 
-        <h1>Home</h1>
+        <h1>Discover page here</h1>
         <Card>
           <Button variant="danger" >Bootstrap button</Button>
         </Card>
@@ -24,4 +24,4 @@ const Home = ({ socket }) => {
   )
 }
 
-export default Home
+export default Discover

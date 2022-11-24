@@ -5,7 +5,9 @@ import {
   Card,
   Container,
   Row,
+  Col,
   ButtonGroup,
+  Form,
 } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom"
 
@@ -17,7 +19,27 @@ const Chat = ({ socket }) => {
     <>
       <Container>
 
-        <h1>Chat page here!</h1>
+        <h1 className="text-start fw-bold mt-4 ms-3">Chat</h1>
+
+        <Form className="d-flex mx-3">
+          <Form.Control
+            type="search"
+            placeholder="Search"
+            className="me-2"
+            aria-label="Search"
+          />
+        </Form>
+
+        <p className='text-black-50 text-start ms-2 mt-3 negative-margin-bottom'>Conversations</p>
+
+        <Container className="border-top" id="chats">
+          <Row>
+            <Col>1 of 3</Col>
+            <Col>2 of 3</Col>
+            <Col>3 of 3</Col>
+          </Row>
+        </Container>
+
         <Card className="fixed-bottom" variant="bottom">
           <ButtonGroup size="lg">
             <Button variant="light" onClick={() => navigate("/search")} >Search</Button>

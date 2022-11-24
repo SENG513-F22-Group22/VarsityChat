@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Chat from "./components/Chat"
-import Discover from "./components/Discover";
+import Search from "./components/Search";
 import Profile from "./components/Profile"
 import SignIn from "./components/SignIn"
 
@@ -14,8 +14,8 @@ function App() {
       <div>
         {/* Add pages here */}
         <Routes>
-          <Route path="/" element={<Chat socket={socket} />}></Route>
-          <Route path="/discover" element={<Discover />}></Route>
+          <Route path="/chat" element={<Chat socket={socket} />}></Route>
+          <Route path="/search" element={<Search />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/signin" element={<SignIn />}></Route>
         </Routes>

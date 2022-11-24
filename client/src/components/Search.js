@@ -9,19 +9,19 @@ import {
 } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom"
 
-const Chat = ({ socket }) => {
+const Search = ({ socket }) => {
   const navigate = useNavigate()
-
   return (
     // 'html' code goes here 
     <>
       <Container>
 
-        <h1>Chat page here</h1>
+        <h1>Discover page here</h1>
+
         <Card className="fixed-bottom" variant="bottom">
           <ButtonGroup size="lg">
-            <Button variant="light" onClick={() => navigate("/search")} >Search</Button>
-            <Button disabled variant="dark" onClick={() => navigate("/chat")} >Chat</Button>
+            <Button disabled variant="dark" onClick={() => navigate("/search")} >Search</Button>
+            <Button variant="light" onClick={() => navigate("/chat")} >Chat</Button>
             <Button variant="light" onClick={() => navigate("/profile")} >Profile</Button>
           </ButtonGroup>
         </Card>
@@ -31,4 +31,4 @@ const Chat = ({ socket }) => {
   )
 }
 
-export default Chat
+export default Search

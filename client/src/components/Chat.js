@@ -17,7 +17,7 @@ const Chat = ({ socket }) => {
     <>
       <Container>
 
-        <h1>Chat page here</h1>
+        <h1>Chat page here!</h1>
         <Card className="fixed-bottom" variant="bottom">
           <ButtonGroup size="lg">
             <Button variant="light" onClick={() => navigate("/search")} >Search</Button>

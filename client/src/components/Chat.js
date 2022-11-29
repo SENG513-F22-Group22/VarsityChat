@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { ChevronRight } from 'react-bootstrap-icons';
 // Import components here from https://react-bootstrap.github.io/layout/grid/
 import {
   Button,
@@ -8,6 +9,8 @@ import {
   Col,
   ButtonGroup,
   Form,
+  Image,
+  Badge,
 } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom"
 
@@ -32,11 +35,13 @@ const Chat = ({ socket }) => {
 
         <p className='text-black-50 text-start ms-2 mt-3 negative-margin-bottom'>Conversations</p>
 
-        <Container className="border-top" id="chats">
+        <Container className="border-top" id="chat-container">
           <Row>
-            <Col>1 of 3</Col>
-            <Col>2 of 3</Col>
-            <Col>3 of 3</Col>
+            <Col xs={2}><Image className="roundedCircle"></Image></Col>
+            <Col xs={1}></Col>
+            <Col xs={5}><p className="text-start pt-1 mb-0">Name</p><p className="text-start">Time</p></Col>
+            <Col><Badge className="mt-3" bg="secondary">1</Badge></Col>
+            <Col xs={1}><ChevronRight color="black" className="mt-3 mr-1" size={20}></ChevronRight></Col>
           </Row>
         </Container>
 

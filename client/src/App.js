@@ -4,6 +4,7 @@ import Chat from "./components/Chat"
 import Search from "./components/Search";
 import Profile from "./components/Profile"
 import SignIn from "./components/SignIn"
+import BottomNav from './components/BottomNav';
 
 import socketIO from "socket.io-client"
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,6 +21,7 @@ function App() {
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/signin" element={<SignIn />}></Route>
         </Routes>
+        <BottomNav />
       </div>
     </BrowserRouter>
 

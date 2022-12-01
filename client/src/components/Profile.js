@@ -19,13 +19,6 @@ const Profile = ({ socket }) => {
 
         <h1>Profile page here</h1>
 
-        <Card className="fixed-bottom" variant="bottom">
-          <ButtonGroup size="lg">
-            <Button variant="light" onClick={() => navigate("/search")} >Search</Button>
-            <Button variant="light" onClick={() => navigate("/chat")} >Chat</Button>
-            <Button disabled variant="dark" onClick={() => navigate("/profile")} >Profile</Button>
-          </ButtonGroup>
-        </Card>
 
       </Container>
     </>

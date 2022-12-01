@@ -17,15 +17,6 @@ const Search = ({ socket }) => {
       <Container>
 
         <h1>Discover page here</h1>
-
-        <Card className="fixed-bottom" variant="bottom">
-          <ButtonGroup size="lg">
-            <Button disabled variant="dark" onClick={() => navigate("/search")} >Search</Button>
-            <Button variant="light" onClick={() => navigate("/chat")} >Chat</Button>
-            <Button variant="light" onClick={() => navigate("/profile")} >Profile</Button>
-          </ButtonGroup>
-        </Card>
-
       </Container>
     </>
   )

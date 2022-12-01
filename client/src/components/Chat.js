@@ -33,10 +33,10 @@ const Chat = ({ socket }) => {
           />
         </Form>
 
-        <p className='text-black-50 text-start ms-2 mt-3 negative-margin-bottom'>Conversations</p>
+        <p className='text-black-50 text-start ms-2 mt-2 mb-2 negative-margin-bottom'>Conversations</p>
 
         <Container id="chat-container">
-          {/* Use this row's styling for profile results */}
+          {/* Conversation user "cards" are appended here. */}
           <Row className='border-top align-items-center'>
             <Col xs={2}><Image src="default_prof.png" className="align-middle rounded-circle" width="50"></Image></Col>
             <Col xs={1}></Col>
@@ -44,13 +44,14 @@ const Chat = ({ socket }) => {
             <Col><Badge pill bg="primary">1</Badge></Col>
             <Col xs={1}><ChevronRight color="black" size={20}></ChevronRight></Col>
           </Row>
-          <Row className='border-top'>
+          <Row className='border-top align-items-center'>
             <Col xs={2}><Image src="default_prof.png" className="align-middle rounded-circle" width="50"></Image></Col>
             <Col xs={1}></Col>
-            <Col xs={5}><p className="text-start pt-1 mb-0 fw-bold">Name</p><p className="small text-start fw-lighter text-muted">Time</p></Col>
-            <Col><Badge pill className="mt-3" bg="primary">1</Badge></Col>
-            <Col xs={1}><ChevronRight color="black" className="mt-3 mr-1" size={20}></ChevronRight></Col>
+            <Col xs={5}><p className="mb-0 pt-3 fw-bold">Name</p><p className="small fw-lighter text-muted">Time</p></Col>
+            <Col><Badge pill bg="primary">1</Badge></Col>
+            <Col xs={1}><ChevronRight color="black" size={20}></ChevronRight></Col>
           </Row>
+
         </Container>
       </Container>
     </>

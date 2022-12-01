@@ -44,15 +44,6 @@ const Chat = ({ socket }) => {
             <Col xs={1}><ChevronRight color="black" className="mt-3 mr-1" size={20}></ChevronRight></Col>
           </Row>
         </Container>
-
-        <Card className="fixed-bottom" variant="bottom">
-          <ButtonGroup size="lg">
-            <Button variant="light" onClick={() => navigate("/search")} >Search</Button>
-            <Button disabled variant="dark" onClick={() => navigate("/chat")} >Chat</Button>
-            <Button variant="light" onClick={() => navigate("/profile")} >Profile</Button>
-          </ButtonGroup>
-        </Card>
-
       </Container>
     </>
   )

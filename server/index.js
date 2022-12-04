@@ -1,6 +1,7 @@
 const express = require("express")
 const app = express()
 const cors = require("cors")
+const bodyParser = require("body-parser")
 const http = require('http').Server(app);
 const PORT = 4000
 const socketIO = require('socket.io')(http, {
@@ -10,6 +11,7 @@ const socketIO = require('socket.io')(http, {
 });
 
 app.use(cors())
+app.use(bodyParser.json())
 let users = []
 
 socketIO.on('connection', (socket) => {
@@ -38,6 +40,12 @@ socketIO.on('connection', (socket) => {
 app.get("/api", (req, res) => {
   res.json({ message: "Hello" })
 });
+
+app.post("/signup", (req, res) => {
+  console.log(req.body);
+  res.json({ message: "Hello" })
+});
+
 
 
 http.listen(PORT, () => {

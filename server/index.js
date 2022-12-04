@@ -6,6 +6,7 @@ const { log } = require("console");
 const http = require('http').Server(app);
 const PORT = 4000;
 const { User } = require("./database.js")
+const authorization = require("./authorization.js")
 
 
 const socketIO = require('socket.io')(http, {
@@ -47,48 +48,8 @@ socketIO.on('connection', (socket) => {
   });
 });
 
-
-app.post("/signup", (req, res) => {
-  const { email, password } = req.body
-
-  User.findOne({ email: email }, (err, found) => {
-    if (err) {
-      res.status(500).json({ error: "Internal server error" })
-    } else if (found) {
-      res.status(400).json({ error: "Email already exists" })
-    } else {
-
-      const newUser = new User({
-        email,
-        password
-      })
-
-      newUser.save((err, saved) => {
-        if (err) {
-          res.status(500).json({ error: "Internal server error" })
-        } else {
-          res.status(200).json({ message: "User created" })
-        }
-      })
-    }
-  });
-})
-
-app.post("/signin", (req, res) => {
-  const { email, password } = req.body
-  User.find({ email: email, password: password }, function (err, docs) {
-    if (err) {
-      console.log(err);
-    }
-    else if (docs.length === 1) {
-      res.status(200).json({ message: "User logged in" })
-    }
-    else {
-      res.status(401).json({ error: "Invalid credentials" })
-    }
-  })
-
-});
+app.post("/signup", authorization.signup)
+app.post("/signin", authorization.signin);
 
 http.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

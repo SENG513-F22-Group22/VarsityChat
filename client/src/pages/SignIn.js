@@ -10,18 +10,30 @@ import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 
 const SignIn = ({ socket }) => {
+  const navigate = useNavigate()
 
   const handleSignin = async (e) => {
     e.preventDefault()
     const email = e.target.emailInput.value
     const password = e.target.passwordInput.value
 
-    const response = await axios.post('http://localhost:4000/signin', {
-      email,
-      password
-    })
+    try {
+      const response = await axios.post('http://localhost:4000/signin', {
+        email,
+        password
+      })
 
-    console.log(response.data);
+      if (response.status === 200) {
+        console.log(response.data);
+        navigate('/chat')
+      }
+
+    } catch (error) {
+      alert("Incorrect email or password")
+    }
+
+
+
   }
 
 

@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 
 const SignUp = ({ socket }) => {
+  const navigate = useNavigate()
 
   const handleSignup = async (e) => {
     e.preventDefault()
@@ -22,12 +23,20 @@ const SignUp = ({ socket }) => {
       return
     }
 
-    const response = await axios.post('http://localhost:4000/signup', {
-      email,
-      password
-    })
+    try {
+      const response = await axios.post('http://localhost:4000/signup', {
+        email,
+        password
+      })
 
-    console.log(response.data);
+      if (response.status === 200) {
+        localStorage.setItem('email', email)
+        navigate('/chat')
+      }
+    } catch (error) {
+      alert("Email already exists")
+    }
+
   }
 
 

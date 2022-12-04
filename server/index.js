@@ -42,34 +42,34 @@ socketIO.on('connection', (socket) => {
 const fakeDB = {
   users: [
     {
-      username: "tim@ucalgary.ca",
+      email: "tim@ucalgary.ca",
       password: "password"
     },
   ]
 }
 
 app.get("/api", (req, res) => {
-  
   res.json({ message: "Hello" })
 });
 
 app.post("/signup", (req, res) => {
   const { email, password } = req.body
-  const user = fakeDB.users.find(user => user.username === email)
+  const user = fakeDB.users.find(user => user.email === email)
+  
   if (user) {
-    res.json({ error: "User already exists" })
+    res.status(400).json({ message: "User already exists" })
   } else {
     fakeDB.users.push({
-      username: email,
+      email,
       password
     })
-    res.json({ message: "User created" })
+    res.status(200).json({ message: "User created" })
   }
 })
 
 app.post("/signin", (req, res) => {
   const { email, password } = req.body
-  const user = fakeDB.users.find(user => user.username === email && user.password === password)
+  const user = fakeDB.users.find(user => user.email === email && user.password === password)
 
   if (user) {
     res.status(200).json({ message: "User logged in" })

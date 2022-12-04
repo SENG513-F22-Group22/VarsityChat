@@ -16,9 +16,8 @@ import { useNavigate } from "react-router-dom"
 
 const Chat = ({ socket }) => {
   const navigate = useNavigate()
-  console.log(localStorage.getItem('email'))
+
   if (!localStorage.getItem('email')) {
-    // navigate('/signin')
     return (
       <>
         <h1>Not signed in</h1>
@@ -46,14 +45,14 @@ const Chat = ({ socket }) => {
 
         <Container id="chats-container">
           {/* Conversation "activeChat" objects are appended here. */}
-          <Row className='activeChat border-top align-items-center' onClick="">
+          <Row className='activeChat border-top align-items-center'>
             <Col xs={2}><Image src="default_prof.png" className="align-middle rounded-circle" width="50"></Image></Col>
             <Col xs={1}></Col>
             <Col xs={5}><p className="mb-0 pt-3 fw-bold">Name</p><p className="small fw-lighter text-muted">Time</p></Col>
             <Col><Badge pill bg="primary">1</Badge></Col>
             <Col xs={1}><ChevronRight color="black" size={20}></ChevronRight></Col>
           </Row>
-          <Row className='activeChat border-top align-items-center' onClick="">
+          <Row className='activeChat border-top align-items-center'>
             <Col xs={2}><Image src="default_prof.png" className="align-middle rounded-circle" width="50"></Image></Col>
             <Col xs={1}></Col>
             <Col xs={5}><p className="mb-0 pt-3 fw-bold">Name</p><p className="small fw-lighter text-muted">Time</p></Col>

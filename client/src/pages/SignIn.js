@@ -31,11 +31,20 @@ const SignIn = ({ socket }) => {
     } catch (error) {
       alert("Incorrect email or password")
     }
-
-
-
   }
 
+  if (localStorage.getItem('email')) {
+    return (
+      <>
+        <h1>You are already signed in</h1>
+        <a onClick={() => {
+          localStorage.removeItem('email')
+          navigate('/')
+        }}
+        >Sign Out</a>
+      </>
+    )
+  }
 
   return (
     <>

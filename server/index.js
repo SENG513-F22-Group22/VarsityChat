@@ -52,32 +52,36 @@ app.get("/api", (req, res) => {
   res.json({ message: "Hello" })
 });
 
+
 app.post("/signup", (req, res) => {
   const { email, password } = req.body
 
-  User.find({ email: email }, function (err, docs) {
+  User.findOne({ email: email }, (err, found) => {
     if (err) {
-      console.log(err);
-    }
-    else if (docs.length > 0) {
-      res.json({ error: "User already exists" });
-    }
-    else {
+      res.status(500).json({ error: "Internal server error" })
+    } else if (found) {
+      res.status(400).json({ error: "Email already exists" })
+    } else {
+
       const newUser = new User({
-        email: email,
-        password: password
-      });
-      newUser.save();
-      console.log("First function call : ", docs, docs[0].email);
-      res.json({ message: "User created" })
+        email,
+        password
+      })
+
+      newUser.save((err, saved) => {
+        if (err) {
+          res.status(500).json({ error: "Internal server error" })
+        } else {
+          res.status(200).json({ message: "User created" })
+        }
+      })
     }
-    
   });
 })
 
 app.post("/signin", (req, res) => {
   const { email, password } = req.body
-  User.find({ email: email, password: password}, function(err, docs) {
+  User.find({ email: email, password: password }, function (err, docs) {
     if (err) {
       console.log(err);
     }
@@ -91,10 +95,11 @@ app.post("/signin", (req, res) => {
 
 });
 
-
-
 mongoose.connect(CONNECTION_URL)
-  .then(() => http.listen(PORT, () => {
-    console.log(`Successfully Connected to MongoDB Cloud. Server listening on ${PORT}`);
-  }))
+  .then(() => {
+    console.log("Connected to database")
+    http.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  })
   .catch((error) => console.log(error.message));

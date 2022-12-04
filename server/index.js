@@ -72,9 +72,9 @@ app.post("/signin", (req, res) => {
   const user = fakeDB.users.find(user => user.username === email && user.password === password)
 
   if (user) {
-    res.send({ success: true, user })
+    res.status(200).json({ message: "User logged in" })
   } else {
-    res.send({ success: false })
+    res.status(401).json({ error: "Invalid credentials" })
   }
 });
 

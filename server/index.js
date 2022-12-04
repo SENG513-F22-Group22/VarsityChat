@@ -4,15 +4,9 @@ const cors = require("cors")
 const bodyParser = require("body-parser");
 const { log } = require("console");
 const http = require('http').Server(app);
-const mongoose = require("mongoose");
 const PORT = 4000;
-const CONNECTION_URL = 'mongodb+srv://SENG513PROJ:oRAMdvj4wDQLlLc7@cluster0.fviwa49.mongodb.net/SENGDB?retryWrites=true&w=majority';
+const { User } = require("./database.js")
 
-// schema for user data
-const User = mongoose.model('User', {
-  email: { type: String },
-  password: { type: String }
-});
 
 const socketIO = require('socket.io')(http, {
   cors: {
@@ -51,11 +45,6 @@ socketIO.on('connection', (socket) => {
     socketIO.emit("newUserResponse", users)
     socket.disconnect()
   });
-});
-
-app.get("/api", (req, res) => {
-
-  res.json({ message: "Hello" })
 });
 
 
@@ -101,11 +90,6 @@ app.post("/signin", (req, res) => {
 
 });
 
-mongoose.connect(CONNECTION_URL)
-  .then(() => {
-    console.log("Connected to database")
-    http.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
-    });
-  })
-  .catch((error) => console.log(error.message));
+http.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

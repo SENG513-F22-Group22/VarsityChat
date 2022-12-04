@@ -74,6 +74,7 @@ const Chat = ({ socket }) => {
               name={chat.name}
               lastMessage={chat.lastMessage}
               unread={chat.unread}
+              socket={socket}
               key={chat.id}
             />
           ))}

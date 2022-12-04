@@ -5,7 +5,7 @@ import {
 import { useNavigate } from "react-router-dom"
 import Message from './Message';
 
-const ChatBody = () => {
+const ChatBody = ({ socket }) => {
     const navigate = useNavigate();
 
     const handleLeaveChat = () => {

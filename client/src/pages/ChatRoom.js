@@ -11,11 +11,17 @@ import ChatFooter from '../components/ChatFooter';
 const ChatRoom = ({ socket }) => {
     const navigate = useNavigate()
 
+    const room = window.location.pathname.split('/')[2]
+
     return (
         // 'html' code goes here 
         <>
-            <ChatBody />
-            <ChatFooter />
+            <ChatBody
+                socket={socket}
+            />
+            <ChatFooter
+                socket={socket}
+            />
 
         </>
     )

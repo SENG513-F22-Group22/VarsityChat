@@ -27,7 +27,7 @@ const SignIn = ({ socket }) => {
       password
     })
 
-    console.log(response);
+    console.log(response.data);
   }
 
 

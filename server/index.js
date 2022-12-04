@@ -1,6 +1,8 @@
 const express = require("express")
 const app = express()
 const cors = require("cors")
+const bodyParser = require("body-parser");
+const { log } = require("console");
 const http = require('http').Server(app);
 const PORT = 4000
 const socketIO = require('socket.io')(http, {
@@ -10,6 +12,7 @@ const socketIO = require('socket.io')(http, {
 });
 
 app.use(cors())
+app.use(bodyParser.json())
 let users = []
 
 socketIO.on('connection', (socket) => {
@@ -35,9 +38,46 @@ socketIO.on('connection', (socket) => {
   });
 });
 
+
+const fakeDB = {
+  users: [
+    {
+      username: "tim@ucalgary.ca",
+      password: "password"
+    },
+  ]
+}
+
 app.get("/api", (req, res) => {
+  
   res.json({ message: "Hello" })
 });
+
+app.post("/signup", (req, res) => {
+  const { email, password } = req.body
+  const user = fakeDB.users.find(user => user.username === email)
+  if (user) {
+    res.json({ error: "User already exists" })
+  } else {
+    fakeDB.users.push({
+      username: email,
+      password
+    })
+    res.json({ message: "User created" })
+  }
+})
+
+app.post("/signin", (req, res) => {
+  const { email, password } = req.body
+  const user = fakeDB.users.find(user => user.username === email && user.password === password)
+
+  if (user) {
+    res.send({ success: true, user })
+  } else {
+    res.send({ success: false })
+  }
+});
+
 
 
 http.listen(PORT, () => {

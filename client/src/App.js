@@ -4,12 +4,15 @@ import Chat from "./pages/Chat"
 import Search from "./pages/Search";
 import Profile from "./pages/Profile"
 import SignIn from "./pages/SignIn"
+import SignUp from "./pages/SignUp"
 import BottomNav from './components/BottomNav';
 
 import socketIO from "socket.io-client"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const socket = socketIO.connect("http://localhost:4000")
+// const socket = socketIO.connect("http://localhost:4000")
+const socket = 0
+
 function App() {
   return (
     <BrowserRouter>
@@ -20,6 +23,7 @@ function App() {
           <Route path="/search" element={<Search />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/signin" element={<SignIn />}></Route>
+          <Route path="/signup" element={<SignUp />}></Route>
         </Routes>
         <BottomNav />
       </div>

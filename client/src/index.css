@@ -84,7 +84,7 @@
   }
   .chat__footer {
     padding: 10px;
-    background-color: #f9f5eb;
+    background-color: White;
     height: 10vh;
   }
   .form {
@@ -104,7 +104,7 @@
   }
   .sendBtn {
     width: 75px;
-    background-color: green;
+    background-color: #0d6efd;
     border-radius: 37.5px;
     margin-left: 10px;
     padding: 10px;
@@ -114,7 +114,7 @@
     cursor: pointer;
   }
   .sendBtn:hover {
-    background-color: rgb(129, 201, 129);
+    background-color: #0da1fd;
   }
   .message__recipient {
     background-color: #f5ccc2;

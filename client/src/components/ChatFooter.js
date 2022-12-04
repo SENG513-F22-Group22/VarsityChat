@@ -23,7 +23,7 @@ const ChatFooter = () => {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                 />
-                <button className="sendBtn"><Send></Send></button>
+                <button className="sendBtn"><Send color="white" size={20}></Send></button>
             </form>
         </div>
     );

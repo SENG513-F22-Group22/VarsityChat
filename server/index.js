@@ -1,24 +1,22 @@
 const express = require("express");
 const cors = require("cors")
+const socketIO = require('socket.io')
 const bodyParser = require("body-parser");
+
 const authorization = require("./authorization.js")
-
 const socketManager = require("./socketManager.js")
-
-const PORT = 4000;
 
 const app = express();
 const http = require('http').Server(app);
 
-const socketIO = require('socket.io')
+const PORT = 4000;
 
-const io = socketIO(http, {
+const serverSocket = socketIO(http, {
   cors: {
     origins: ["http://localhost:3000", "http://127.0.0.1:3000"],
   }
 });
-
-io.on('connection', socketManager.connection)
+serverSocket.on('connection', socketManager.connection)
 
 app.use(cors())
 app.use(bodyParser.json())

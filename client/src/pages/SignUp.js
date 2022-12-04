@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 
-const SignIn = ({ socket }) => {
+const SignUp = ({ socket }) => {
 
   const handleSignup = async (e) => {
     e.preventDefault()
@@ -61,4 +61,4 @@ const SignIn = ({ socket }) => {
   )
 }
 
-export default SignIn
+export default SignUp

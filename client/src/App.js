@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Chat from "./pages/Chat"
+import ChatRoom from "./pages/ChatRoom"
 import Search from "./pages/Search";
 import Profile from "./pages/Profile"
 import SignIn from "./pages/SignIn"
@@ -20,6 +21,7 @@ function App() {
         {/* Add pages here */}
         <Routes>
           <Route path="/chat" element={<Chat socket={socket} />}></Route>
+          <Route path="/chatroom" element={<ChatRoom socket={socket} />}></Route>
           <Route path="/search" element={<Search />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/" element={<SignIn />}></Route>

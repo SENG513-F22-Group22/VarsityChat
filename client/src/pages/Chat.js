@@ -17,9 +17,14 @@ import { useNavigate } from "react-router-dom"
 const Chat = ({ socket }) => {
   const navigate = useNavigate()
   console.log(localStorage.getItem('email'))
-  // if (!localStorage.getItem('email')) {
-  //   navigate('/signin')
-  // }
+  if (!localStorage.getItem('email')) {
+    // navigate('/signin')
+    return (
+      <>
+        <h1>Not signed in</h1>
+      </>
+    )
+  }
 
   return (
     // 'html' code goes here 

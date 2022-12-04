@@ -1,10 +1,19 @@
-const express = require("express")
-const app = express()
+const express = require("express");
+const app = express();
 const cors = require("cors")
 const bodyParser = require("body-parser");
 const { log } = require("console");
 const http = require('http').Server(app);
-const PORT = 4000
+const mongoose = require("mongoose");
+const PORT = 4000;
+const CONNECTION_URL = 'mongodb+srv://SENG513PROJ:oRAMdvj4wDQLlLc7@cluster0.fviwa49.mongodb.net/SENGDB?retryWrites=true&w=majority';
+
+// schema for user data
+const User = mongoose.model('User', {
+  email: { type: String },
+  password: { type: String }
+});
+
 const socketIO = require('socket.io')(http, {
   cors: {
     origin: "http://localhost:3000"
@@ -38,48 +47,59 @@ socketIO.on('connection', (socket) => {
   });
 });
 
-
-const fakeDB = {
-  users: [
-    {
-      email: "tim@ucalgary.ca",
-      password: "password"
-    },
-  ]
-}
-
 app.get("/api", (req, res) => {
+
   res.json({ message: "Hello" })
 });
 
+
 app.post("/signup", (req, res) => {
   const { email, password } = req.body
-  const user = fakeDB.users.find(user => user.email === email)
-  
-  if (user) {
-    res.status(400).json({ message: "User already exists" })
-  } else {
-    fakeDB.users.push({
-      email,
-      password
-    })
-    res.status(200).json({ message: "User created" })
-  }
+
+  User.findOne({ email: email }, (err, found) => {
+    if (err) {
+      res.status(500).json({ error: "Internal server error" })
+    } else if (found) {
+      res.status(400).json({ error: "Email already exists" })
+    } else {
+
+      const newUser = new User({
+        email,
+        password
+      })
+
+      newUser.save((err, saved) => {
+        if (err) {
+          res.status(500).json({ error: "Internal server error" })
+        } else {
+          res.status(200).json({ message: "User created" })
+        }
+      })
+    }
+  });
 })
 
 app.post("/signin", (req, res) => {
   const { email, password } = req.body
-  const user = fakeDB.users.find(user => user.email === email && user.password === password)
+  User.find({ email: email, password: password }, function (err, docs) {
+    if (err) {
+      console.log(err);
+    }
+    else if (docs.length === 1) {
+      res.status(200).json({ message: "User logged in" })
+    }
+    else {
+      res.status(401).json({ error: "Invalid credentials" })
+    }
+  })
 
-  if (user) {
-    res.status(200).json({ message: "User logged in" })
-  } else {
-    res.status(401).json({ error: "Invalid credentials" })
-  }
 });
 
-
-
-http.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
-});
+mongoose.connect(CONNECTION_URL)
+  .then(() => {
+    console.log("Connected to database")
+    http.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  })
+  .catch((error) => console.log(error.message));

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Chat from "./components/Chat"
-import Search from "./components/Search";
-import Profile from "./components/Profile"
-import SignIn from "./components/SignIn"
+import Chat from "./pages/Chat"
+import Search from "./pages/Search";
+import Profile from "./pages/Profile"
+import SignIn from "./pages/SignIn"
 import BottomNav from './components/BottomNav';
 
 import socketIO from "socket.io-client"

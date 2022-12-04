@@ -33,16 +33,19 @@ const Chat = ({ socket }) => {
       name: 'Simon',
       lastMessage: 'Hey man',
       unread: 0,
+      id: 0,
     },
     {
       name: 'Luke',
       lastMessage: 'You done the project?',
       unread: 1,
+      id: 1,
     },
     {
       name: 'Tim',
       lastMessage: 'Whats guuud',
       unread: 69,
+      id: 2,
     }
   ]
 
@@ -71,7 +74,7 @@ const Chat = ({ socket }) => {
               name={chat.name}
               lastMessage={chat.lastMessage}
               unread={chat.unread}
-              key={chat.name}
+              key={chat.id}
             />
           ))}
 

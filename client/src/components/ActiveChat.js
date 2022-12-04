@@ -18,9 +18,13 @@ const ActiveChat = ({ name, lastMessage, unread }) => {
     const previewLength = 10
     const msgPreview = lastMessage.length > previewLength ? lastMessage.substring(0, previewLength) + '...' : lastMessage
 
+    const handleClick = () => {
+        navigate('/chatroom?name=' + name)
+    }
+
     return (
         <>
-            <Row className='activeChat border-top align-items-center'>
+            <Row className='activeChat border-top align-items-center' onClick={handleClick}>
                 <Col xs={2}><Image src="default_prof.png" className="align-middle rounded-circle" width="50"></Image></Col>
                 <Col xs={1}></Col>
                 <Col xs={5}><p className="mb-0 pt-3 fw-bold">{name}</p>

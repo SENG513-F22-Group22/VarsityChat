@@ -12,6 +12,19 @@ import axios from 'axios'
 const SignUp = ({ socket }) => {
   const navigate = useNavigate()
 
+  if (localStorage.getItem('email')) {
+    return (
+      <>
+        <h1>You are already signed in</h1>
+        <a onClick={() => {
+          localStorage.removeItem('email')
+          navigate('/')
+        }}
+        >Sign Out</a>
+      </>
+    )
+  }
+
   const handleSignup = async (e) => {
     e.preventDefault()
     const email = e.target.emailInput.value

@@ -12,12 +12,18 @@ import { useNavigate } from "react-router-dom"
 const Profile = ({ socket }) => {
   const navigate = useNavigate()
 
+  const signOut = () => {
+    localStorage.removeItem('email')
+    navigate('/signin')
+  }
+
   return (
     // 'html' code goes here 
     <>
       <Container>
 
-        <h1>Profile page here</h1>
+      <h1 className="text-start fw-bold mt-4 ms-3">Profile</h1>
+        <Button onClick={signOut}>Sign Out</Button>
 
 
       </Container>

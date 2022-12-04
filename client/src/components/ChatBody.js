@@ -18,60 +18,70 @@ const ChatBody = () => {
             contents: 'Hello there',
             time: '12:00 PM',
             isSelf: false,
+            id: 0,
         },
         {
             from: 'You',
             contents: 'How are you?',
             time: '12:01 PM',
             isSelf: true,
+            id: 1,
         },
         {
             from: 'John',
             contents: 'I am fine',
             time: '12:02 PM',
             isSelf: false,
+            id: 2,
         },
         {
             from: 'John',
             contents: 'I am fine',
             time: '12:02 PM',
             isSelf: false,
+            id: 3,
         },
         {
             from: 'John',
             contents: 'I am fine',
             time: '12:02 PM',
             isSelf: false,
+            id: 4,
         },
         {
             from: 'John',
             contents: 'I am fine',
             time: '12:02 PM',
             isSelf: false,
+            id: 5,
         },
         {
             from: 'John',
             contents: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
             time: '12:02 PM',
             isSelf: false,
+            id: 6,
         },
         {
             from: 'You',
             contents: 'I am fine',
             time: '12:02 PM',
             isSelf: false,
+            id: 7,
         },
         {
             from: 'John',
             contents: 'I am fine',
             time: '12:02 PM',
             isSelf: false,
+            id: 8,
         },
         {
             from: 'John',
             contents: 'What about you?',
             time: '12:03 PM',
             isSelf: false,
+            id: 9,
         }
     ];
 
@@ -92,6 +102,7 @@ const ChatBody = () => {
                         contents={message.contents}
                         time={message.time}
                         isSelf={message.isSelf}
+                        key={message.id}
                     />
                 ))}
 

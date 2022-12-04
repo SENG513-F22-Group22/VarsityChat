@@ -11,8 +11,7 @@ import BottomNav from './components/BottomNav';
 import socketIO from "socket.io-client"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// const socket = socketIO.connect("http://localhost:4000")
-const socket = 0
+const socket = socketIO.connect("http://localhost:4000")
 
 function App() {
   return (

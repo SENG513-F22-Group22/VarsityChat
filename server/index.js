@@ -5,9 +5,10 @@ const bodyParser = require("body-parser");
 const { log } = require("console");
 const http = require('http').Server(app);
 const PORT = 4000
+
 const socketIO = require('socket.io')(http, {
   cors: {
-    origin: "http://localhost:3000"
+    origins: ["http://localhost:3000", "http://127.0.0.1:3000"],
   }
 });
 
@@ -55,7 +56,7 @@ app.get("/api", (req, res) => {
 app.post("/signup", (req, res) => {
   const { email, password } = req.body
   const user = fakeDB.users.find(user => user.email === email)
-  
+
   if (user) {
     res.status(400).json({ message: "User already exists" })
   } else {

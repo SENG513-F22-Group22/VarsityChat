@@ -55,6 +55,7 @@ const SignIn = ({ socket }) => {
               </div>
               <button type="submit" className="btn btn-primary">Submit</button>
             </form>
+            <p className="text-center mt-3">Don't have an account? <a href="/signup">Sign Up</a></p>
           </Card.Body>
         </Card>
       </Container>

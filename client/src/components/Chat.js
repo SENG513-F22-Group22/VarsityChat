@@ -35,16 +35,16 @@ const Chat = ({ socket }) => {
 
         <p className='text-black-50 text-start ms-2 mt-2 mb-2 negative-margin-bottom'>Conversations</p>
 
-        <Container id="chat-container">
-          {/* Conversation user "cards" are appended here. */}
-          <Row className='border-top align-items-center'>
+        <Container id="chats-container">
+          {/* Conversation "activeChat" objects are appended here. */}
+          <Row className='activeChat border-top align-items-center' onClick="">
             <Col xs={2}><Image src="default_prof.png" className="align-middle rounded-circle" width="50"></Image></Col>
             <Col xs={1}></Col>
             <Col xs={5}><p className="mb-0 pt-3 fw-bold">Name</p><p className="small fw-lighter text-muted">Time</p></Col>
             <Col><Badge pill bg="primary">1</Badge></Col>
             <Col xs={1}><ChevronRight color="black" size={20}></ChevronRight></Col>
           </Row>
-          <Row className='border-top align-items-center'>
+          <Row className='activeChat border-top align-items-center' onClick="">
             <Col xs={2}><Image src="default_prof.png" className="align-middle rounded-circle" width="50"></Image></Col>
             <Col xs={1}></Col>
             <Col xs={5}><p className="mb-0 pt-3 fw-bold">Name</p><p className="small fw-lighter text-muted">Time</p></Col>

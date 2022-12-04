@@ -4,11 +4,13 @@ import {
   Button,
   Card,
   Container,
-  Row
+  Row,
+  ButtonGroup,
 } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom"
 
 const Profile = ({ socket }) => {
+  const navigate = useNavigate()
 
   return (
     // 'html' code goes here 
@@ -16,9 +18,8 @@ const Profile = ({ socket }) => {
       <Container>
 
         <h1>Profile page here</h1>
-        <Card>
-          <Button variant="danger" >Bootstrap button</Button>
-        </Card>
+
+
       </Container>
     </>
   )

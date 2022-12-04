@@ -11,7 +11,9 @@ import ChatFooter from '../components/ChatFooter';
 const ChatRoom = ({ socket }) => {
     const navigate = useNavigate()
 
-    const room = window.location.pathname.split('/')[2]
+    const room = window.location.href.split('?')[1].split('=')[1]
+    console.log(room);
+    socket.emit('join', room)
 
     return (
         // 'html' code goes here 

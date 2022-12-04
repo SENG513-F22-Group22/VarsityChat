@@ -17,11 +17,15 @@ app.use(bodyParser.json())
 let users = []
 
 socketIO.on('connection', (socket) => {
-  console.log(`⚡: ${socket.id} user just connected!`)
 
   socket.on("chat message", data => {
     console.log(data);
     // socketIO.emit("messageResponse", data)
+  })
+
+  socket.on("join", room => {
+    console.log(room);
+    socket.join(room)
   })
 
   socket.on("typing", data => (
@@ -40,7 +44,6 @@ socketIO.on('connection', (socket) => {
     socket.disconnect()
   });
 });
-
 
 const fakeDB = {
   users: [

@@ -13,7 +13,7 @@ const serverSocket = socketIO(http, {
     origins: ["http://localhost:3000", "http://127.0.0.1:3000"],
   }
 });
-const socketManager = require("./socketManager.js")(serverSocket);
+require("./socketManager.js")(serverSocket);
 
 const PORT = 4000;
 

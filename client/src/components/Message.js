@@ -8,7 +8,12 @@ const Message = ({ from, contents, time, isSelf }) => {
         <>
             <div className="message__chats">
                 <p>{from}</p>
-                <div className={from === "You" ? "message__sender" : "message__recipient"}>
+                <div
+                    className={
+                        from === localStorage.getItem('email') ?
+                            "message__sender" :
+                            "message__recipient"}
+                >
                     <p>{contents}</p>
                 </div>
             </div>

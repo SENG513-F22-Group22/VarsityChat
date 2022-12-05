@@ -8,7 +8,6 @@ module.exports = (io) => {
         });
 
         socket.on("chat message", (message) => {
-            console.log("message: ", message);
             // io.to(message.room).emit("chat message", message);
             io.emit("chat message", message);
         });

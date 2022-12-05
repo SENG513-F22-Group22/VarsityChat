@@ -8,8 +8,7 @@ module.exports = (io) => {
         });
 
         socket.on("chat message", (message) => {
-            // io.to(message.room).emit("chat message", message);
-            io.emit("chat message", message);
+            io.to(message.room).emit("chat message", message);
         });
 
         socket.on("disconnect", () => {

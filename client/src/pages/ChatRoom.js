@@ -1,5 +1,5 @@
 "use strict";
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ChevronRight } from 'react-bootstrap-icons';
 // Import components here from https://react-bootstrap.github.io/layout/grid/
 import {
@@ -13,7 +13,14 @@ const ChatRoom = ({ socket }) => {
     const navigate = useNavigate()
 
     const room = window.location.href.split('?')[1].split('=')[1]
-    socket.emit('join', room)
+
+    useEffect(() => {
+        // ensure we're only in one room at a time
+        socket.disconnect()
+        socket.connect()
+        socket.emit('join', room)
+    }, [room, socket])
+
 
     return (
         // 'html' code goes here 
@@ -23,6 +30,7 @@ const ChatRoom = ({ socket }) => {
             />
             <ChatFooter
                 socket={socket}
+                room={room}
             />
 
         </>

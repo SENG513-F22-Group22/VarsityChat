@@ -5,7 +5,7 @@ import {
 } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom"
 
-const ChatFooter = ({ socket }) => {
+const ChatFooter = ({ socket, room }) => {
     const [message, setMessage] = useState('');
 
     const handleSendMessage = (e) => {
@@ -18,7 +18,8 @@ const ChatFooter = ({ socket }) => {
                 contents: message,
                 time: new Date().toLocaleTimeString(),
                 isSelf: false,
-                id: Math.random()
+                id: Math.random(),
+                room: room
             },
         );
     };

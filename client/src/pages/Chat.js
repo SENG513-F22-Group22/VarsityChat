@@ -22,7 +22,8 @@ const Chat = ({ socket }) => {
     return (
       <>
         <h1>Not signed in</h1>
-      </>
+        <a href='/'>Sign in</a>
+    </>
     )
   }
 
@@ -74,6 +75,7 @@ const Chat = ({ socket }) => {
               name={chat.name}
               lastMessage={chat.lastMessage}
               unread={chat.unread}
+              socket={socket}
               key={chat.id}
             />
           ))}

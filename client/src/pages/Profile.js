@@ -21,7 +21,7 @@ const Profile = ({ socket }) => {
 
   const signOut = () => {
     localStorage.removeItem('email')
-    navigate('/signin')
+    navigate('/')
   }
 
   return (
@@ -50,7 +50,7 @@ const Profile = ({ socket }) => {
         <Container>
           <Form.Group className="mb-2">
             <Form.Label>Email</Form.Label>
-            <Form.Control placeholder="simon@ucalgary.ca" disabled />
+            <Form.Control placeholder={localStorage.getItem('email')} disabled />
           </Form.Group>
           <Form.Group className="mb-2" controlId="formFirstName">
             <Form.Label>First Name</Form.Label>

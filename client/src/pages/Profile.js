@@ -35,7 +35,7 @@ const Profile = ({ socket }) => {
         </Row>
         <Row>
           <Col xs={4}></Col>
-          <Col xs={4}><Image src="default_prof.png" className="middle rounded-circle" width="110"></Image></Col>
+          <Col xs={4}><Image src="default_prof.png" className="position-relative top-50 start-50 translate-middle" width="110"></Image></Col>
           <Col xs={4}></Col>
         </Row>
         <Row>
@@ -61,7 +61,13 @@ const Profile = ({ socket }) => {
             <Form.Control type="text" placeholder="e.g. Stevenson" disabled={edit} />
           </Form.Group>
           <p className='text-black-50 text-start ms-2 mt-2 mb-2 negative-margin-bottom'>Enrolled Classes</p>
-
+          <ul className="class_list">
+            <li>SENG 513</li>
+            <li>SENG 550</li>
+            <li>CPSC 481</li>
+            <li>CPSC 413</li>
+            <li>CPSC 441</li>
+          </ul>
         </Container>
 
       </Container>

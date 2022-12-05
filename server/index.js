@@ -28,7 +28,7 @@ const fakeDBRooms = {
   Simon: { // this is a room
     messages: [
       {
-        from: "Simon",
+        from: "simon.vincent@ucalgary.ca",
         contents: "Hello",
         time: "12:00",
         id: 1
@@ -42,7 +42,6 @@ const fakeDBRooms = {
     ]
   }
 }
-
 
 app.get("/messages", (req, res) => {
   const room = req.query.room

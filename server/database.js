@@ -1,5 +1,6 @@
+require('dotenv').config();
 const mongoose = require("mongoose");
-const CONNECTION_URL = 'mongodb+srv://SENG513PROJ:oRAMdvj4wDQLlLc7@cluster0.fviwa49.mongodb.net/SENGDB?retryWrites=true&w=majority';
+const CONNECTION_URL = `mongodb+srv://SENG513PROJ:${process.env.MONGO_PW}@cluster0.fviwa49.mongodb.net/SENGDB?retryWrites=true&w=majority`;
 
 // schema for user data
 const User = mongoose.model('User', {

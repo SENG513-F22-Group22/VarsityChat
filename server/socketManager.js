@@ -1,16 +1,20 @@
-const connection = (socket) => {
-    console.log("New client connected");
-    // Here we can listen to events from the client
-    socket.on("message", (message) => {
-        console.log(message);
-        // Here we can emit events to the client
-        socket.emit("message", "Hello from the server");
-    });
-    socket.on("disconnect", () => {
-        console.log("Client disconnected");
-    });
-}
+module.exports = (io) => {
+    io.on("connection", (socket) => {
+        console.log("New client connected");
 
-module.exports = {
-    connection
+        socket.on("join", (room) => {
+            socket.join(room);
+            console.log("joined room: ", room);
+        });
+
+        socket.on("chat message", (message) => {
+            console.log("message: ", message);
+            // io.to(message.room).emit("chat message", message);
+            io.emit("chat message", message);
+        });
+
+        socket.on("disconnect", () => {
+            console.log("Client disconnected")
+        });
+    });
 }

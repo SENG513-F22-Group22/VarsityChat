@@ -22,7 +22,8 @@ const Chat = ({ socket }) => {
     return (
       <>
         <h1>Not signed in</h1>
-      </>
+        <a href='/'>Sign in</a>
+    </>
     )
   }
 

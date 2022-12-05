@@ -12,7 +12,15 @@ const ChatFooter = ({ socket }) => {
         e.preventDefault();
         console.log({ userName: localStorage.getItem('email'), message });
         setMessage('');
-        socket.emit('chat message', { email: localStorage.getItem('email'), message });
+        socket.emit('chat message',
+            {
+                from: localStorage.getItem('email'),
+                contents: message,
+                time: new Date().toLocaleTimeString(),
+                isSelf: false,
+                id: Math.random()
+            },
+        );
     };
     return (
         <div className="chat__footer">

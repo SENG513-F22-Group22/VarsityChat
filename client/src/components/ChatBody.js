@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
 
 } from 'react-bootstrap';
@@ -7,83 +7,26 @@ import Message from './Message';
 
 const ChatBody = ({ socket }) => {
     const navigate = useNavigate();
+    
+    const exampleMessages = [
+        {
+            from: 'Simon',
+            contents: 'hey man how are you',
+            time: '12:00',
+            isSelf: false,
+            id: 0
+        },
+    ]
+
+    const [messages, setMessages] = useState(exampleMessages);
+
+    socket.on('chat message', (message) => {
+        setMessages([...messages, message]);
+    });
 
     const handleLeaveChat = () => {
         navigate('/chat');
     };
-
-    const messages = [
-        {
-            from: 'John',
-            contents: 'Hello there',
-            time: '12:00 PM',
-            isSelf: false,
-            id: 0,
-        },
-        {
-            from: 'You',
-            contents: 'How are you?',
-            time: '12:01 PM',
-            isSelf: true,
-            id: 1,
-        },
-        {
-            from: 'John',
-            contents: 'I am fine',
-            time: '12:02 PM',
-            isSelf: false,
-            id: 2,
-        },
-        {
-            from: 'John',
-            contents: 'I am fine',
-            time: '12:02 PM',
-            isSelf: false,
-            id: 3,
-        },
-        {
-            from: 'John',
-            contents: 'I am fine',
-            time: '12:02 PM',
-            isSelf: false,
-            id: 4,
-        },
-        {
-            from: 'John',
-            contents: 'I am fine',
-            time: '12:02 PM',
-            isSelf: false,
-            id: 5,
-        },
-        {
-            from: 'John',
-            contents: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
-            time: '12:02 PM',
-            isSelf: false,
-            id: 6,
-        },
-        {
-            from: 'You',
-            contents: 'I am fine',
-            time: '12:02 PM',
-            isSelf: false,
-            id: 7,
-        },
-        {
-            from: 'John',
-            contents: 'I am fine',
-            time: '12:02 PM',
-            isSelf: false,
-            id: 8,
-        },
-        {
-            from: 'John',
-            contents: 'What about you?',
-            time: '12:03 PM',
-            isSelf: false,
-            id: 9,
-        }
-    ];
 
     return (
         <>

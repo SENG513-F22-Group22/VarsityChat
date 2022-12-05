@@ -1,3 +1,4 @@
+"use strict";
 import React, { useState } from 'react'
 import { ChevronRight } from 'react-bootstrap-icons';
 // Import components here from https://react-bootstrap.github.io/layout/grid/

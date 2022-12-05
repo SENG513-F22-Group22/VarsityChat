@@ -23,9 +23,31 @@ app.use(bodyParser.json())
 app.post("/signup", authorization.signup)
 app.post("/signin", authorization.signin);
 
+const fakeDBChats = {
+  'tim@ucalgary.ca': [
+    {
+      name: 'Simon',
+      lastMessage: 'Hey man',
+      unread: 0,
+      id: 0,
+    },
+    {
+      name: 'Luke',
+      lastMessage: 'You done the project?',
+      unread: 3,
+      id: 1,
+    },
+    {
+      name: 'Tim',
+      lastMessage: 'Whats guuud',
+      unread: 69,
+      id: 2,
+    }
+  ]
+}
 
 const fakeDBRooms = {
-  Simon: { // this is a room
+  'Simon': { // this is a room
     messages: [
       {
         from: "simon.vincent@ucalgary.ca",
@@ -43,9 +65,24 @@ const fakeDBRooms = {
   }
 }
 
+app.get("/chats", (req, res) => {
+  const { email } = req.query;
+
+  if (email in fakeDBChats) {
+    res.status(200).send(fakeDBChats[email]);
+  } else {
+    res.status(404).send("No chats found");
+  }
+})
+
 app.get("/messages", (req, res) => {
   const room = req.query.room
-  res.send(fakeDBRooms[room].messages)
+
+  if (fakeDBRooms[room]) {
+    res.status(200).send(fakeDBRooms[room].messages)
+  } else {
+    res.status(404).send("Room not found")
+  }
 })
 
 http.listen(PORT, () => {

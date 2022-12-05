@@ -1,22 +1,30 @@
-import React, { useState } from 'react'
-import { ChevronRight } from 'react-bootstrap-icons';
+import React, { useState, useEffect } from 'react'
 // Import components here from https://react-bootstrap.github.io/layout/grid/
 import {
-  Button,
-  Card,
   Container,
-  Row,
-  Col,
-  ButtonGroup,
   Form,
-  Image,
-  Badge,
 } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom"
 import ActiveChat from '../components/ActiveChat';
+import axios from 'axios';
 
 const Chat = ({ socket }) => {
+  const [activeChats, setActiveChats] = useState([])
   const navigate = useNavigate()
+
+  useEffect(() => {
+    axios.get("http://localhost:4000/chats",
+      {
+        params: {
+          email: localStorage.getItem("email")
+        }
+      })
+      .then((res) => {
+        setActiveChats(res.data)
+      }).catch((err) => {
+        console.log(err)
+      })
+  }, [])
 
   if (!localStorage.getItem('email')) {
     return (
@@ -26,29 +34,6 @@ const Chat = ({ socket }) => {
     </>
     )
   }
-
-
-  // This is a placeholder for the chat list
-  const activeChats = [
-    {
-      name: 'Simon',
-      lastMessage: 'Hey man',
-      unread: 0,
-      id: 0,
-    },
-    {
-      name: 'Luke',
-      lastMessage: 'You done the project?',
-      unread: 1,
-      id: 1,
-    },
-    {
-      name: 'Tim',
-      lastMessage: 'Whats guuud',
-      unread: 69,
-      id: 2,
-    }
-  ]
 
   return (
     // 'html' code goes here 

@@ -3,7 +3,7 @@ import {
 
 } from 'react-bootstrap';
 
-const Message = ({ from, contents, time, isSelf }) => {
+const Message = ({ from, contents, time }) => {
     return (
         <>
             <div className="message__chats">

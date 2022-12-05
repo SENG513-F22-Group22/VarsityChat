@@ -23,7 +23,6 @@ const ChatRoom = ({ socket }) => {
 
 
     return (
-        // 'html' code goes here 
         <>
             <ChatBody
                 socket={socket}
@@ -32,7 +31,6 @@ const ChatRoom = ({ socket }) => {
                 socket={socket}
                 room={room}
             />
-
         </>
     )
 }

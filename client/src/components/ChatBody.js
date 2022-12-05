@@ -1,24 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 
 } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom"
 import Message from './Message';
+import axios from 'axios';
 
 const ChatBody = ({ socket }) => {
     const navigate = useNavigate();
-    
-    const exampleMessages = [
-        {
-            from: 'Simon',
-            contents: 'hey man how are you',
-            time: '12:00',
-            isSelf: false,
-            id: 0
-        },
-    ]
+    const [messages, setMessages] = useState([]);
 
-    const [messages, setMessages] = useState(exampleMessages);
+    useEffect(() => {
+        axios.get('http://localhost:4000/messages',
+            {
+                params: {
+                    room: window.location.href.split('?')[1].split('=')[1]
+                }
+            })
+            .then((res) => {
+                setMessages(res.data);
+            }).catch((err) => {
+                console.log(err);
+            })
+    }, [])
+
 
     socket.on('chat message', (message) => {
         setMessages([...messages, message]);
@@ -44,7 +49,6 @@ const ChatBody = ({ socket }) => {
                         from={message.from}
                         contents={message.contents}
                         time={message.time}
-                        isSelf={message.isSelf}
                         key={message.id}
                     />
                 ))}

@@ -23,6 +23,32 @@ app.use(bodyParser.json())
 app.post("/signup", authorization.signup)
 app.post("/signin", authorization.signin);
 
+
+const fakeDBRooms = {
+  Simon: { // this is a room
+    messages: [
+      {
+        from: "Simon",
+        contents: "Hello",
+        time: "12:00",
+        id: 1
+      },
+      {
+        from: "tim@ucalgary.ca",
+        contents: "How are you?",
+        time: "12:01",
+        id: 2
+      },
+    ]
+  }
+}
+
+
+app.get("/messages", (req, res) => {
+  const room = req.query.room
+  res.send(fakeDBRooms[room].messages)
+})
+
 http.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

@@ -55,7 +55,7 @@ const Chat = ({ socket }) => {
     <>
       <Container>
 
-        <h1 className="text-start fw-bold mt-4 ms-3">Chat</h1>
+        <h2 className="text-start fw-bold mt-4 ms-3">Chat</h2>
 
         <Form className="d-flex mx-3">
           <Form.Control

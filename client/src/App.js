@@ -17,7 +17,6 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        {/* Add pages here */}
         <Routes>
           <Route path="/chat" element={<Chat socket={socket} />}></Route>
           <Route path="/chatroom" element={<ChatRoom socket={socket} />}></Route>

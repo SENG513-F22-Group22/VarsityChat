@@ -93,10 +93,14 @@ app.get("/chats", (req, res) => {
 })
 
 app.get("/messages", (req, res) => {
-  const room = req.query.room
+  const { room, email } = req.query
 
   if (fakeDBRooms[room]) {
-    res.status(200).send(fakeDBRooms[room].messages)
+    if (fakeDBRooms[room].participants.includes(email)) {
+      res.status(200).send(fakeDBRooms[room].messages)
+    } else {
+      res.status(403).send("You are not allowed to view this room")
+    }
   } else {
     res.status(404).send("Room not found")
   }

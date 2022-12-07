@@ -3,15 +3,12 @@ import { Send } from 'react-bootstrap-icons';
 import {
 
 } from 'react-bootstrap';
-import { useNavigate } from "react-router-dom"
 
 const ChatFooter = ({ socket, room }) => {
     const [message, setMessage] = useState('');
 
     const handleSendMessage = (e) => {
         e.preventDefault();
-        console.log({ userName: localStorage.getItem('email'), message });
-        setMessage('');
         socket.emit('chat message',
             {
                 from: localStorage.getItem('email'),
@@ -22,6 +19,7 @@ const ChatFooter = ({ socket, room }) => {
                 room: room
             },
         );
+        setMessage('');
     };
     return (
         <div className="chat__footer">
@@ -33,7 +31,9 @@ const ChatFooter = ({ socket, room }) => {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                 />
-                <button className="sendBtn">
+                <button className="sendBtn"
+                    disabled={!message}
+                >
                     <Send color="white" size={20} />
                 </button>
             </form>

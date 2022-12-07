@@ -13,13 +13,13 @@ import {
 } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom"
 
-const ActiveChat = ({ name, lastMessage, unread }) => {
+const ActiveChat = ({ name, lastMessage, unread, id }) => {
     const navigate = useNavigate()
     const previewLength = 10
     const msgPreview = lastMessage.length > previewLength ? lastMessage.substring(0, previewLength) + '...' : lastMessage
 
     const handleClick = () => {
-        navigate('/chatroom?name=' + name)
+        navigate('/chatroom?id=' + id)
     }
 
     return (

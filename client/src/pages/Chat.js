@@ -16,7 +16,7 @@ const Chat = ({ socket }) => {
     if (!localStorage.getItem('email')) {
       navigate('/')
     }
-    
+
     axios.get("http://localhost:4000/chats",
       {
         params: {
@@ -56,6 +56,7 @@ const Chat = ({ socket }) => {
               lastMessage={chat.lastMessage}
               unread={chat.unread}
               socket={socket}
+              id={chat.id}
               key={chat.id}
             />
           ))}

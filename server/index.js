@@ -36,18 +36,13 @@ const fakeDBChats = {
       lastMessage: 'You done the project?',
       unread: 3,
       id: 1,
-    },
-    {
-      name: 'Tim',
-      lastMessage: 'Whats guuud',
-      unread: 69,
-      id: 2,
     }
   ]
 }
 
 const fakeDBRooms = {
-  'Simon': { // this is a room
+  0: { // this is a room id
+    participants: ["Simon", "Tim"],
     messages: [
       {
         from: "simon.vincent@ucalgary.ca",
@@ -61,7 +56,24 @@ const fakeDBRooms = {
         time: "12:01",
         id: 2
       },
-    ]
+    ],
+  },
+  1: {
+    participants: ["Luke", "Tim"],
+    messages: [
+      {
+        from: "luke@ucalgary.ca",
+        contents: "Hey Tim",
+        time: "12:00",
+        id: 1
+      },
+      {
+        from: "tim@ucalgary.ca",
+        contents: "Hey Luke",
+        time: "12:01",
+        id: 2
+      },
+    ],
   }
 }
 

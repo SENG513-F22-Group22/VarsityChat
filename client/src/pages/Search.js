@@ -5,9 +5,14 @@ import {
   Card,
   Container,
   Row,
+  Col,
   ButtonGroup,
+  Form,
+  ListGroup
 } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom"
+import ClassSearchItem from '../components/ClassSearchItem';
+import { ChevronRight } from 'react-bootstrap-icons';
 
 const Search = ({ socket }) => {
   const navigate = useNavigate()
@@ -15,8 +20,36 @@ const Search = ({ socket }) => {
     // 'html' code goes here 
     <>
       <Container>
+        <Row>
+          <h2 className="text-start fw-bold mt-4 ms-3">Search</h2>
+        </Row>
+        <Row>
+          <Form className="d-flex mx-3">
+            <Form.Control
+              type="search"
+              placeholder="Search by Course Name"
+              className="me-2"
+              aria-label="Search"
+            />
+          </Form>
+        </Row>
 
-        <h1>Discover page here</h1>
+        <Container className="mt-4">
+          <ListGroup id="SearchClassSelection" variant="flush">
+            {/* This is where ClassSearchItems are appended */}
+            <ListGroup.Item>
+              <Row className='classSearchItem align-items-center'>
+                <Col xs={4}><p className="mt-1 mb-1">SENG 513</p></Col>
+                <Col xs={7}></Col>
+                <Col xs={1}>
+                  <ChevronRight color="black" size={20} />
+                </Col>
+              </Row>
+            </ListGroup.Item>
+            <ListGroup.Item><ClassSearchItem courseName="CPSC 449" /></ListGroup.Item>
+          </ListGroup>
+        </Container>
+
       </Container>
     </>
   )

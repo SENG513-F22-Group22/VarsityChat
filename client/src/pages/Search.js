@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 // Import components here from https://react-bootstrap.github.io/layout/grid/
 import {
   Button,
@@ -11,6 +11,13 @@ import { useNavigate } from "react-router-dom"
 
 const Search = ({ socket }) => {
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!localStorage.getItem('email')) {
+      navigate('/')
+    }
+  }, [])
+
   return (
     // 'html' code goes here 
     <>

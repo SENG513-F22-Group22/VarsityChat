@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 // Import components here from https://react-bootstrap.github.io/layout/grid/
 import {
   Button,
@@ -23,6 +23,12 @@ const Profile = ({ socket }) => {
     localStorage.removeItem('email')
     navigate('/')
   }
+
+  useEffect(() => {
+    if (!localStorage.getItem('email')) {
+      navigate('/')
+    }
+  }, [])
 
   return (
     // 'html' code goes here 

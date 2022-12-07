@@ -13,6 +13,10 @@ const Chat = ({ socket }) => {
   const navigate = useNavigate()
 
   useEffect(() => {
+    if (!localStorage.getItem('email')) {
+      navigate('/')
+    }
+    
     axios.get("http://localhost:4000/chats",
       {
         params: {
@@ -25,15 +29,6 @@ const Chat = ({ socket }) => {
         console.log(err)
       })
   }, [])
-
-  if (!localStorage.getItem('email')) {
-    return (
-      <>
-        <h1>Not signed in</h1>
-        <a href='/'>Sign in</a>
-    </>
-    )
-  }
 
   return (
     // 'html' code goes here 

@@ -5,10 +5,14 @@ import {
   Card,
   Container,
   Row,
+  Col,
   ButtonGroup,
-  Form
+  Form,
+  ListGroup
 } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom"
+import ClassSearchItem from '../components/ClassSearchItem';
+import { ChevronRight } from 'react-bootstrap-icons';
 
 const Search = ({ socket }) => {
   const navigate = useNavigate()
@@ -31,7 +35,19 @@ const Search = ({ socket }) => {
         </Row>
 
         <Container className="mt-4">
-
+          <ListGroup id="SearchClassSelection" variant="flush">
+            {/* This is where ClassSearchItems are appended */}
+            <ListGroup.Item>
+              <Row className='classSearchItem align-items-center'>
+                <Col xs={4}><p className="mt-1 mb-1">SENG 513</p></Col>
+                <Col xs={7}></Col>
+                <Col xs={1}>
+                  <ChevronRight color="black" size={20} />
+                </Col>
+              </Row>
+            </ListGroup.Item>
+            <ListGroup.Item><ClassSearchItem courseName="CPSC 449" /></ListGroup.Item>
+          </ListGroup>
         </Container>
 
       </Container>

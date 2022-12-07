@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
 
 } from 'react-bootstrap';
@@ -9,8 +9,10 @@ import axios from 'axios';
 const ChatBody = ({ socket }) => {
     const navigate = useNavigate();
     const [messages, setMessages] = useState([]);
+    const lastMessageRef = useRef(null);
 
     useEffect(() => {
+        console.log('useEffect');
         axios.get('http://localhost:4000/messages',
             {
                 params: {
@@ -27,6 +29,17 @@ const ChatBody = ({ socket }) => {
 
     socket.on('chat message', (message) => {
         setMessages([...messages, message]);
+        // scroll to bottom of chat
+        const chatBody = document.querySelector('.message__container');
+        setTimeout(() => {
+            // chatBody.scrollTop = chatBody.scrollHeight;
+            // do this but smooth
+            chatBody.scrollTo({
+                top: chatBody.scrollHeight,
+                // scroll smooth and slow
+                behavior: 'smooth'
+            });
+        }, 100);
     });
 
     const handleLeaveChat = () => {
@@ -41,6 +54,11 @@ const ChatBody = ({ socket }) => {
                 <button className="leaveChat__btn" onClick={handleLeaveChat}>
                     LEAVE CHAT
                 </button>
+                <button
+                onClick={() => {
+                    const chatBody = document.querySelector('.message__container');
+                }}
+                >scroll</button>
             </header>
 
             <div className="message__container">

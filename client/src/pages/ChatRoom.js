@@ -15,10 +15,16 @@ const ChatRoom = ({ socket }) => {
     const room = window.location.href.split('?')[1].split('=')[1]
 
     useEffect(() => {
+        if (!localStorage.getItem('email')) {
+            navigate('/')
+            return;
+        }
+
         // ensure we're only in one room at a time
         socket.disconnect()
         socket.connect()
         socket.emit('join', room)
+        
     }, [room, socket])
 
 

@@ -62,7 +62,7 @@ const SignIn = ({ socket }) => {
                 <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
                 <input type="password" className="form-control" id="passwordInput" />
               </div>
-              <button type="submit" className="btn btn-primary">Submit</button>
+              <button type="submit" className="btn btn-primary">Sign in</button>
             </form>
             <p className="text-center mt-3">Don't have an account? <a href="/signup">Sign Up</a></p>
           </Card.Body>

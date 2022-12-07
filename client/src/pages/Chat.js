@@ -15,6 +15,7 @@ const Chat = ({ socket }) => {
   useEffect(() => {
     if (!localStorage.getItem('email')) {
       navigate('/')
+      return;
     }
 
     axios.get("http://localhost:4000/chats",
@@ -55,7 +56,6 @@ const Chat = ({ socket }) => {
               name={chat.name}
               lastMessage={chat.lastMessage}
               unread={chat.unread}
-              socket={socket}
               id={chat.id}
               key={chat.id}
             />

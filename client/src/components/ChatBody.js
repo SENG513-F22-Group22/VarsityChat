@@ -9,7 +9,7 @@ import axios from 'axios';
 const ChatBody = ({ socket }) => {
     const navigate = useNavigate();
     const [messages, setMessages] = useState([]);
-    const lastMessageRef = useRef(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         axios.get('http://localhost:4000/messages',
@@ -22,7 +22,7 @@ const ChatBody = ({ socket }) => {
             .then((res) => {
                 if (res.status === 200) {
                     setMessages(res.data);
-
+                    setLoading(false);
                 }
             }).catch((err) => {
                 console.log(err);
@@ -61,17 +61,16 @@ const ChatBody = ({ socket }) => {
             </header>
 
             <div className="message__container">
-                {messages.map((message) => (
-                    <Message
-                        from={message.from}
-                        contents={message.contents}
-                        time={message.time}
-                        key={message.id}
-                    />
-                ))}
-
-                {/*This is triggered when a user is typing*/}
-                <div className="message__status">
+                {loading ? <p>loading...</p> :
+                    messages.map((message) => (
+                        <Message
+                            from={message.from}
+                            contents={message.contents}
+                            time={message.time}
+                            key={message.id}
+                        />
+                    ))}
+                < div className="message__status">
                     {/* <p>Someone is typing...</p> */}
                 </div>
             </div>

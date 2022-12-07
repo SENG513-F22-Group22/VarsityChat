@@ -10,6 +10,7 @@ import axios from 'axios';
 
 const Chat = ({ socket }) => {
   const [activeChats, setActiveChats] = useState([])
+  const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -26,6 +27,7 @@ const Chat = ({ socket }) => {
       })
       .then((res) => {
         setActiveChats(res.data)
+        setLoading(false)
       }).catch((err) => {
         console.log(err)
       })
@@ -49,9 +51,12 @@ const Chat = ({ socket }) => {
 
         <p className='text-black-50 text-start ms-2 mt-2 mb-2 negative-margin-bottom'>Conversations</p>
 
+
         <Container id="chats-container">
           {/* Conversation "activeChat" objects are appended here. */}
-          {activeChats.map((chat) => (
+          { loading ? <p>Loading...</p> :
+          
+          activeChats.map((chat) => (
             <ActiveChat
               name={chat.name}
               lastMessage={chat.lastMessage}

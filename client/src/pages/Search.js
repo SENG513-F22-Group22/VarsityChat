@@ -34,7 +34,7 @@ const Search = ({ socket }) => {
                 <Col xs={4}><p className="mt-1 mb-1">SENG 513</p></Col>
                 <Col xs={7}></Col>
                 <Col xs={1}>
-                  <ChevronRight color="black" size={20} />
+                  <ChevronRight className="mb-1" color="black" size={20} />
                 </Col>
               </Row>
             </ListGroup.Item>

@@ -9,9 +9,11 @@ import {
     Button
 } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom"
-import SearchProfileItem from '../components/ClassSearchItem';
-import { ChevronLeft } from 'react-bootstrap-icons';
+import SearchProfileItem from '../components/SearchProfileItem';
 import { ArrowLeft } from 'react-bootstrap-icons';
+import { ChatFill } from 'react-bootstrap-icons';
+import { Image } from 'react-bootstrap-icons';
+
 
 const SearchResults = ({ socket }) => {
     const navigate = useNavigate()
@@ -41,10 +43,11 @@ const SearchResults = ({ socket }) => {
                 </Row>
 
                 <p className='border-bottom text-black-50 text-start ms-3 mt-2 mb-2 negative-margin-bottom'>Course Name</p>
-                <ListGroup id="SearchResultsList" variant="flush">
-                    <ListGroup.Item><SearchProfileItem name="Tim MacPhail" /></ListGroup.Item>
 
-                </ListGroup>
+                <Container id="SearchResultsContainer" >
+                    {/* This is where SearchProfileItems are appended */}
+                    <SearchProfileItem name="Tim Macphail" />
+                </Container>
 
 
 

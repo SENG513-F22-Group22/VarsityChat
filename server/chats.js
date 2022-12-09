@@ -52,23 +52,12 @@ const setMessages = (req, res) => {
 
 const getRooms = (req, res) => {
     const email = req.query.email
-    User.findOne({ email: email }, (err, foundUser) => {
+    Chatroom.find({ users: email }, (err, found) => {
         if (err) {
             res.status(500).json({ error: "Internal server error" })
         }
-        else if (foundUser) {
-
-            Chatroom.find({ users: foundUser.id }, (err, found) => {
-                if (err) {
-                    res.status(500).json({ error: "Internal server error" })
-                }
-                else if (found) {
-                    res.send(found)
-                }
-                else {
-                    // TODO: if chatroom was not found for user (means no chats started yet)
-                }
-            })
+        if (found){
+            res.send(found)
         }
         else {
             // TODO: if user was not found by email (but user should be logged in here so some kinda error)
@@ -78,10 +67,6 @@ const getRooms = (req, res) => {
     
 }
 
-// TODO start new room
-const setRooms = () => {
-
-}
 
 const getUsers = (req, res) => {
     User.find((err, found) => {
@@ -89,20 +74,30 @@ const getUsers = (req, res) => {
     })
 }
 
-const checkRoom = (req, res) => {
-    const { user1, user2 } = req.body
+const getRoom = (req, res) => {
+    let { user1, user2 } = req.query
+
     Chatroom.findOne({ users: { $all: [user1, user2] } }, (err, found) => {
         if (err) {
             res.status(500).json({ error: "Internal server error" })
         }
         else if (found) {
-            console.log(found)
-            console.log("found")
-            res.send(true)
+            res.status(200).json({ newRoomID: found.id })
         }
         else {
-            setRooms()
-            res.send(false)
+            const NewChatroom = new Chatroom({
+                roomName: user1 + " " + user2,
+                users: [user1, user2],
+                unread: 0,
+                lastmsg: "yo"
+            })
+        
+            NewChatroom.save((err) => {
+                if (err) {
+                    console.log(err)
+                }
+            })
+            res.status(201).json({ newRoomID: NewChatroom.id })
         }
     })
 }
@@ -111,7 +106,6 @@ module.exports = {
     getMessages,
     setMessages,
     getRooms,
-    setRooms,
+    getRoom,
     getUsers,
-    checkRoom
 }

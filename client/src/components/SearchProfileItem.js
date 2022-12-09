@@ -9,19 +9,25 @@ import { ChatFill } from 'react-bootstrap-icons';
 import axios from 'axios'
 
 const SearchProfileItem = (props) => {
-    const { name, userEmail } = props
+    const { email, userEmail } = props
     const navigate = useNavigate()
 
     const handleClick = async () => {
+        let newRoomID = ""
+
         try {
-            const response = await axios.get('http://localhost:4000/checkRoom', {
-                user1: name,
-                user2: userEmail
+            const response = await axios.get('http://localhost:4000/getRoom', {
+                    params: {
+                        user1: email,
+                        user2: userEmail
+                    }
             })
-            console.log(response.data)
+            
             if (response.status === 200) {
-                // setMessages(response.data.data)
-                // socket.emit('chat message', response.data.data)
+                newRoomID = response.data.newRoomID
+            }
+            else if (response.status === 201) {
+                newRoomID = response.data.newRoomID
             }
           } catch (error) {
             console.log(error)
@@ -30,7 +36,7 @@ const SearchProfileItem = (props) => {
         // Need to make a new chatroom with this person
 
         // Not just go to an existing room, need to make a new room
-        navigate('/chatroom?name=' + name)
+        navigate('/chatroom?name=' + newRoomID)
     }
 
     return (
@@ -39,7 +45,7 @@ const SearchProfileItem = (props) => {
 
                 <Col xs={2}><Image src="default_prof.png" className="align-middle rounded-circle" width="50"></Image></Col>
                 <Col xs={1}></Col>
-                <Col xs={5}><p className="mb-0 fw-bold">{name}</p></Col>
+                <Col xs={5}><p className="mb-0 fw-bold">{email}</p></Col>
                 <Col xs={2}></Col>
 
                 <Col xs={1}>

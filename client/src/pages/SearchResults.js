@@ -60,7 +60,7 @@ const SearchResults = (props) => {
                 <Container id="SearchResultsContainer" >
                     {/* This is where SearchProfileItems are appended */}
                     {users.map((user) => (
-                        <SearchProfileItem userEmail={userEmail} name={user.email} key={user._id} />
+                        <SearchProfileItem userEmail={userEmail} email={user.email} key={user._id} />
                     ))}
                     
                     

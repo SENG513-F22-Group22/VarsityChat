@@ -21,6 +21,7 @@ const setMessages = (req, res) => {
     const contents = req.body.contents 
     const time = req.body.time 
     const room = req.body.room
+    const to = req.body.to
 
     const NewMessage = new Message({
         from: from,
@@ -39,10 +40,29 @@ const setMessages = (req, res) => {
                     res.status(500).json({ error: "Internal server error" })
                 }
                 else if (found) {
-                    res.status(200).json({ message: "Message saved!", data: found })
+                    
+                    Chatroom.findOne({ _id: room }, (err, foundChatroom) => {
+                        if (err) {
+                            res.status(500).json({ error: "Internal server error" })
+                        }
+                        else if (foundChatroom) {
+                            const newFound = foundChatroom
+                            const temp = found.slice()
+                            newFound.lastmsg = temp.pop().contents
+                            const temp2 = newFound.lastmsg
+                            newFound.save((err) => {
+                                if (err) {
+                                    console.log(err)
+                                }
+                                res.status(200).json({ message: "Message saved!", data: { messages: found, chats: newFound } })
+                            })
+                            
+                        }
+                        
+                    })
                 }
                 else {
-                    // TODO when no messages
+                    // TODO when no messages, prolly just return nothing
                 }
             })
             
@@ -70,6 +90,9 @@ const getRooms = (req, res) => {
 
 const getUsers = (req, res) => {
     User.find((err, found) => {
+        if (err) {
+            console.log(err)
+        }
         res.send(found)
     })
 }

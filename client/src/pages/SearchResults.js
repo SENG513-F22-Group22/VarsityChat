@@ -23,7 +23,17 @@ const SearchResults = (props) => {
     useEffect(() => {
         axios.get('http://localhost:4000/users',
           ).then((res) => {
-            setUsers(res.data)
+            
+            // remove current user from list
+            let validUsers = []
+            for (let user of res.data) {
+                if (user.email !== userEmail) {
+                    validUsers.push(user)
+                }
+            }
+    
+        
+            setUsers(validUsers)
           }).catch((err) => {
             console.log(err);
           })

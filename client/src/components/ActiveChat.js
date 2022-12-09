@@ -14,10 +14,14 @@ import {
 import { useNavigate } from "react-router-dom"
 
 const ActiveChat = (props) => {
-    const { name, lastMessage, unread, room } = props
+    const { name, lastMessage, unread, room, setChats, socket } = props
     const navigate = useNavigate()
     const previewLength = 10
     const msgPreview = lastMessage.length > previewLength ? lastMessage.substring(0, previewLength) + '...' : lastMessage
+
+    socket.on('chat room', (data) => {     
+        setChats(data.chats);
+      });
 
     const handleClick = () => {
         navigate('/chatroom?name=' + room)

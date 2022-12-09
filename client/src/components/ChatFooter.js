@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Send } from 'react-bootstrap-icons';
 import {
 
@@ -7,8 +7,14 @@ import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 
 const ChatFooter = (props) => {
-    const { socket, room, setMessages } = props
+    const { socket, room, setMessages, userEmail } = props
     const [message, setMessage] = useState('');
+
+    useEffect(() => {
+        socket.on("chat message", (data) => {
+            setMessages(data.messages);
+        })
+    }, [socket])
 
     const handleSendMessage = async (e) => {
         e.preventDefault();
@@ -19,16 +25,19 @@ const ChatFooter = (props) => {
                 from: localStorage.getItem('email'),
                 contents: message,
                 time: new Date().toLocaleTimeString(),
-                room: room
+                room: room,
+                to: userEmail
             })
-      
+
             if (response.status === 200) {
-                setMessages(response.data.data)
-                socket.emit('chat message', response.data.data)
+                let newMessages = response.data.data.messages
+                setMessages(newMessages)
+                socket.emit('chat message', { room: room, messages: newMessages })
+                socket.emit('chat room', { room: room, chats: response.data.data.chats })
             }
-          } catch (error) {
+        } catch (error) {
             alert("Error! Message was not sent!")
-          }
+        }
 
     };
     return (

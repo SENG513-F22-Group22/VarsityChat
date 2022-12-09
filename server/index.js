@@ -25,8 +25,7 @@ app.post("/signup", authorization.signup);
 app.post("/signin", authorization.signin);
 
 app.get("/chats", chats.getRooms);
-
-app.get("/getRoom", chats.getRoom)
+app.get("/getRoom", chats.getRoom);
 
 app.get("/users", chats.getUsers);
 

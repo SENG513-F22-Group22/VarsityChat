@@ -28,8 +28,8 @@ const ChatBody = (props) => {
     }, [])
 
 
-    socket.on('chat message', (message) => {        
-        setMessages(message);
+    socket.on('chat message', (data) => {   
+        setMessages(data.messages);
     });
 
     const handleLeaveChat = () => {

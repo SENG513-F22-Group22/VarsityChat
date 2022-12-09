@@ -7,8 +7,12 @@ module.exports = (io) => {
             console.log("joined room: ", room);
         });
 
-        socket.on("chat message", (message) => {
-            io.to(message.room).emit("chat message", message);
+        socket.on("chat message", (data) => {
+            io.to(data.room).emit("chat message", { room: data.room, messages: data.messages });
+        });
+
+        socket.on("chat room", (data) => {
+            io.to(data.room).emit("chat room", { room: data.room, chats: data.chats });
         });
 
         socket.on("disconnect", () => {

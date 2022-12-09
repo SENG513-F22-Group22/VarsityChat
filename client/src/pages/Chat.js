@@ -21,6 +21,8 @@ const Chat = (props) => {
   const navigate = useNavigate()
   const [chats, setChats] = useState([])
 
+
+
   useEffect(() => {
     axios.get('http://localhost:4000/chats',
       {
@@ -74,6 +76,7 @@ const Chat = (props) => {
               socket={socket}
               key={chat._id}
               room={chat._id}
+              setChats={setChats}
             />
           ))}
 

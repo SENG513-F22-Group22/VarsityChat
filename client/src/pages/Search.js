@@ -44,11 +44,22 @@ const Search = ({ socket }) => {
 
               <ClassSearchItem courseName="SENG 513" />
 
-              <ClassSearchItem courseName="CPSC 449" />
-            </Container>
-          </Col>
-          <Col xs={0} lg={3}></Col>
-        </Row>
+        <Container className="mt-2">
+          <ListGroup id="SearchClassSelection" variant="flush">
+            {/* This is where ClassSearchItems are appended */}
+            <ListGroup.Item>
+              <Row className='classSearchItem align-items-center'>
+                <Col xs={4}><p className="mt-1 mb-1">SENG 513</p></Col>
+                <Col xs={7}></Col>
+                <Col xs={1}>
+                  <ChevronRight className="mb-1" color="black" size={20} />
+                </Col>
+              </Row>
+            </ListGroup.Item>
+            <ListGroup.Item><ClassSearchItem courseName="all" /></ListGroup.Item>
+          </ListGroup>
+        </Container>
+
 
       </Container>
     </>

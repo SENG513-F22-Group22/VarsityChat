@@ -9,7 +9,8 @@ import {
 import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 
-const SignUp = ({ socket }) => {
+const SignUp = (props) => {
+  const { socket, setUserEmail } = props
   const navigate = useNavigate()
 
   if (localStorage.getItem('email')) {
@@ -18,6 +19,7 @@ const SignUp = ({ socket }) => {
         <h1>You are already signed in</h1>
         <a onClick={() => {
           localStorage.removeItem('email')
+          setUserEmail("")
           navigate('/')
         }}
         >Sign Out</a>
@@ -44,6 +46,7 @@ const SignUp = ({ socket }) => {
 
       if (response.status === 200) {
         localStorage.setItem('email', email)
+        setUserEmail(email)
         navigate('/chat')
       }
     } catch (error) {

@@ -5,7 +5,25 @@ const CONNECTION_URL = `mongodb+srv://SENG513PROJ:${process.env.MONGO_PW}@cluste
 // schema for user data
 const User = mongoose.model('User', {
     email: { type: String },
-    password: { type: String }
+    password: { type: String },
+    classes: [{ type: String }]
+});
+
+// schema for chat room data
+const Chatroom = mongoose.model('Chatroom', {
+    roomName: { type: String },
+    users: [{ type: String }],
+    unread: { type: Number },
+    lastmsg: { type: String }
+});
+
+// schema for message room data
+const Message = mongoose.model('Message', {
+    from: { type: String },
+    room: { type: String },
+    contents: { type: String },
+    time: { type: String },
+    id: { type: Number }
 });
 
 mongoose.connect(CONNECTION_URL)
@@ -16,5 +34,7 @@ mongoose.connect(CONNECTION_URL)
     .catch((error) => console.log(error.message));
 
 module.exports = {
-    User
+    User,
+    Message,
+    Chatroom
 }

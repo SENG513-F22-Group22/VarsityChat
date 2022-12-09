@@ -1,27 +1,44 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Send } from 'react-bootstrap-icons';
 import {
 
 } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom"
+import axios from 'axios'
 
-const ChatFooter = ({ socket, room }) => {
+const ChatFooter = (props) => {
+    const { socket, room, setMessages, userEmail } = props
     const [message, setMessage] = useState('');
 
-    const handleSendMessage = (e) => {
+    useEffect(() => {
+        socket.on("chat message", (data) => {
+            setMessages(data.messages);
+        })
+    }, [socket])
+
+    const handleSendMessage = async (e) => {
         e.preventDefault();
-        console.log({ userName: localStorage.getItem('email'), message });
         setMessage('');
-        socket.emit('chat message',
-            {
+
+        try {
+            const response = await axios.post('http://localhost:4000/messages', {
                 from: localStorage.getItem('email'),
                 contents: message,
                 time: new Date().toLocaleTimeString(),
-                isSelf: false,
-                id: Math.random(),
-                room: room
-            },
-        );
+                room: room,
+                to: userEmail
+            })
+
+            if (response.status === 200) {
+                let newMessages = response.data.data.messages
+                setMessages(newMessages)
+                socket.emit('chat message', { room: room, messages: newMessages })
+                socket.emit('chat room', { room: room, chats: response.data.data.chats })
+            }
+        } catch (error) {
+            alert("Error! Message was not sent!")
+        }
+
     };
     return (
         <div className="chat__footer">

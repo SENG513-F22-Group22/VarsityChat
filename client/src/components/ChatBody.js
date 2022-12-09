@@ -6,15 +6,18 @@ import { useNavigate } from "react-router-dom"
 import Message from './Message';
 import axios from 'axios';
 
-const ChatBody = ({ socket }) => {
+const ChatBody = (props) => {
+    const { socket, messages, setMessages } = props
     const navigate = useNavigate();
-    const [messages, setMessages] = useState([]);
+
+
 
     useEffect(() => {
         axios.get('http://localhost:4000/messages',
             {
                 params: {
-                    room: window.location.href.split('?')[1].split('=')[1]
+                    room: window.location.href.split('?')[1].split('=')[1],
+
                 }
             })
             .then((res) => {
@@ -25,8 +28,8 @@ const ChatBody = ({ socket }) => {
     }, [])
 
 
-    socket.on('chat message', (message) => {
-        setMessages([...messages, message]);
+    socket.on('chat message', (data) => {   
+        setMessages(data.messages);
     });
 
     const handleLeaveChat = () => {
@@ -49,7 +52,7 @@ const ChatBody = ({ socket }) => {
                         from={message.from}
                         contents={message.contents}
                         time={message.time}
-                        key={message.id}
+                        key={message._id}
                     />
                 ))}
 

@@ -21,10 +21,28 @@ const Search = ({ socket }) => {
     <>
       <Container>
         <Row>
-          <h2 className="text-start fw-bold mt-4 ms-3">Search</h2>
+          <Col xs={0} lg={3}></Col>
+          <Col lg={6}>
+            <h2 className="text-start fw-bold mt-4 ms-3">Search</h2>
+          </Col>
+          <Col xs={0} lg={3}></Col>
         </Row>
 
-        <p className='border-bottom text-black-50 text-start ms-2 mt-2 mb-2 negative-margin-bottom'>Enrolled Classes</p>
+        <Row>
+          <Col xs={0} lg={3}></Col>
+          <Col lg={6}>
+            <p className='border-bottom text-black-50 text-start ms-2 mt-2 mb-2 negative-margin-bottom'>Enrolled Classes</p>
+          </Col>
+          <Col xs={0} lg={3}></Col>
+        </Row>
+
+        <Row>
+          <Col xs={0} lg={3}></Col>
+          <Col lg={6}>
+            <Container id="SearchCourseContainer" className="mt-2">
+              {/* This is where ClassSearchItems are appended */}
+
+              <ClassSearchItem courseName="SENG 513" />
 
         <Container className="mt-2">
           <ListGroup id="SearchClassSelection" variant="flush">
@@ -41,6 +59,7 @@ const Search = ({ socket }) => {
             <ListGroup.Item><ClassSearchItem courseName="all" /></ListGroup.Item>
           </ListGroup>
         </Container>
+
 
       </Container>
     </>

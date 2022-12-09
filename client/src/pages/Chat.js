@@ -52,21 +52,40 @@ const Chat = (props) => {
     // 'html' code goes here 
     <>
       <Container>
+        <Row>
+          <Col xs={0} lg={3}></Col>
+          <Col lg={6}>
+            <h2 className="text-start fw-bold mt-4 ms-3">Chat</h2>
+          </Col>
+          <Col xs={0} lg={3}></Col>
+        </Row>
+        <Row>
+          <Col xs={0} lg={3}></Col>
+          <Col lg={6}>
+            <Form className="d-flex mx-3">
+              <Form.Control
+                type="search"
+                placeholder="Search"
+                className="me-2"
+                aria-label="Search"
+              />
+            </Form>
+          </Col>
+          <Col xs={0} lg={3}></Col>
+        </Row>
 
-        <h2 className="text-start fw-bold mt-4 ms-3">Chat</h2>
+        <Row>
+          <Col xs={0} lg={3}></Col>
+          <Col lg={6}>
+            <p className='text-black-50 text-start ms-2 mt-2 mb-2 negative-margin-bottom'>Conversations</p>
+          </Col>
+          <Col xs={0} lg={3}></Col>
+        </Row>
 
-        <Form className="d-flex mx-3">
-          <Form.Control
-            type="search"
-            placeholder="Search"
-            className="me-2"
-            aria-label="Search"
-          />
-        </Form>
-
-        <p className='text-black-50 text-start ms-2 mt-2 mb-2 negative-margin-bottom'>Conversations</p>
-
-        <Container id="chats-container">
+        <Row>
+          <Col xs={0} lg={3}></Col>
+          <Col lg={6}>
+            <Container id="chats-container">
           {/* Conversation "activeChat" objects are appended here. */}
           {chats.map((chat) => (
             <ActiveChat
@@ -78,9 +97,13 @@ const Chat = (props) => {
               room={chat._id}
               setChats={setChats}
             />
-          ))}
+              ))}
 
-        </Container>
+
+            </Container>
+          </Col>
+          <Col xs={0} lg={3}></Col>
+        </Row>
       </Container>
     </>
   )

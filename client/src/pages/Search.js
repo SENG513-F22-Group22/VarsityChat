@@ -23,18 +23,10 @@ const Search = ({ socket }) => {
         <Row>
           <h2 className="text-start fw-bold mt-4 ms-3">Search</h2>
         </Row>
-        <Row>
-          <Form className="d-flex mx-3">
-            <Form.Control
-              type="search"
-              placeholder="Search by Course Name"
-              className="me-2"
-              aria-label="Search"
-            />
-          </Form>
-        </Row>
 
-        <Container className="mt-4">
+        <p className='border-bottom text-black-50 text-start ms-2 mt-2 mb-2 negative-margin-bottom'>Enrolled Classes</p>
+
+        <Container className="mt-2">
           <ListGroup id="SearchClassSelection" variant="flush">
             {/* This is where ClassSearchItems are appended */}
             <ListGroup.Item>
@@ -42,7 +34,7 @@ const Search = ({ socket }) => {
                 <Col xs={4}><p className="mt-1 mb-1">SENG 513</p></Col>
                 <Col xs={7}></Col>
                 <Col xs={1}>
-                  <ChevronRight color="black" size={20} />
+                  <ChevronRight className="mb-1" color="black" size={20} />
                 </Col>
               </Row>
             </ListGroup.Item>

@@ -11,7 +11,7 @@ const ClassSearchItem = ({ courseName }) => {
     const navigate = useNavigate()
 
     const handleClick = () => {
-        navigate('/classlist?name=' + courseName)
+        navigate('/searchresults?name=' + courseName)
     }
 
     return (
@@ -20,7 +20,7 @@ const ClassSearchItem = ({ courseName }) => {
                 <Col xs={4}><p className="mb-1 mt-1">{courseName}</p></Col>
                 <Col xs={7}></Col>
                 <Col xs={1}>
-                    <ChevronRight color="black" size={20} />
+                    <ChevronRight className="mb-1" color="black" size={20} />
                 </Col>
             </Row>
         </>

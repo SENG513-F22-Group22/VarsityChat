@@ -22,32 +22,54 @@ const SearchResults = ({ socket }) => {
         <>
             <Container>
                 <Row>
-                    <h2 className="text-start fw-bold mt-4 ms-3">Search</h2>
+                    <Col xs={0} lg={3}></Col>
+                    <Col lg={6}>
+                        <h2 className="text-start fw-bold mt-4 ms-3">Search</h2>
+                    </Col>
+                    <Col xs={0} lg={3}></Col>
                 </Row>
                 <Row>
-                    <Form className="d-flex mx-3">
-                        <Form.Control
-                            type="search"
-                            placeholder="Filter by name"
-                            className="me-2"
-                            aria-label="Search"
-                        />
-                    </Form>
+                    <Col xs={0} lg={3}></Col>
+                    <Col lg={6}>
+                        <Form className="d-flex mx-3">
+                            <Form.Control
+                                type="search"
+                                placeholder="Filter by name"
+                                className="me-2"
+                                aria-label="Search"
+                            />
+                        </Form>
+                    </Col>
+                    <Col xs={0} lg={3}></Col>
                 </Row>
                 <Row className="mt-2 ms-1">
-                    <Col xs={4}>
+                    <Col xs={0} lg={3}></Col>
+                    <Col xs={4} lg={6}>
                         <Button variant="outline-secondary">
                             <ArrowLeft color="black" size={20} />
                         </Button>
                     </Col>
+                    <Col xs={0} lg={6}></Col>
                 </Row>
 
-                <p className='border-bottom text-black-50 text-start ms-3 mt-2 mb-2 negative-margin-bottom'>Course Name</p>
+                <Row>
+                    <Col xs={0} lg={3}></Col>
+                    <Col lg={6}>
+                        <p className='border-bottom text-black-50 text-start ms-3 mt-2 mb-2 negative-margin-bottom'>Course Name</p>
+                    </Col>
+                    <Col xs={0} lg={3}></Col>
+                </Row>
 
-                <Container id="SearchResultsContainer" >
-                    {/* This is where SearchProfileItems are appended */}
-                    <SearchProfileItem name="Tim Macphail" />
-                </Container>
+                <Row>
+                    <Col xs={0} lg={3}></Col>
+                    <Col lg={6}>
+                        <Container id="SearchResultsContainer" >
+                            {/* This is where SearchProfileItems are appended */}
+                            <SearchProfileItem name="Tim Macphail" />
+                        </Container>
+                    </Col>
+                    <Col xs={0} lg={3}></Col>
+                </Row>
 
 
 

@@ -14,19 +14,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const socket = socketIO.connect("http://localhost:4000")
 
+
 function App() {
+  const [userEmail, setUserEmail] = useState("")
+
   return (
     <BrowserRouter>
       <div>
         {/* Add pages here */}
         <Routes>
-          <Route path="/chat" element={<Chat socket={socket} />}></Route>
-          <Route path="/chatroom" element={<ChatRoom socket={socket} />}></Route>
+          <Route path="/chat" element={<Chat socket={socket} userEmail={userEmail} />}></Route>
+          <Route path="/chatroom" element={<ChatRoom socket={socket} userEmail={userEmail} />}></Route>
           <Route path="/search" element={<Search />}></Route>
-          <Route path="/searchresults" element={<SearchResults />}></Route>
+          <Route path="/searchresults" element={<SearchResults userEmail={userEmail} />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
-          <Route path="/" element={<SignIn />}></Route>
-          <Route path="/signup" element={<SignUp />}></Route>
+          <Route path="/" element={<SignIn setUserEmail={setUserEmail} />}></Route>
+          <Route path="/signup" element={<SignUp setUserEmail={setUserEmail} />}></Route>
         </Routes>
         <BottomNav />
       </div>

@@ -38,7 +38,7 @@ const Search = ({ socket }) => {
                 </Col>
               </Row>
             </ListGroup.Item>
-            <ListGroup.Item><ClassSearchItem courseName="CPSC 449" /></ListGroup.Item>
+            <ListGroup.Item><ClassSearchItem courseName="all" /></ListGroup.Item>
           </ListGroup>
         </Container>
 

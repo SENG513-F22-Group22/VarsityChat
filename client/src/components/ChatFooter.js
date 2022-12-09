@@ -4,24 +4,32 @@ import {
 
 } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom"
+import axios from 'axios'
 
-const ChatFooter = ({ socket, room }) => {
+const ChatFooter = (props) => {
+    const { socket, room, setMessages } = props
     const [message, setMessage] = useState('');
 
-    const handleSendMessage = (e) => {
+    const handleSendMessage = async (e) => {
         e.preventDefault();
-        console.log({ userName: localStorage.getItem('email'), message });
         setMessage('');
-        socket.emit('chat message',
-            {
+
+        try {
+            const response = await axios.post('http://localhost:4000/messages', {
                 from: localStorage.getItem('email'),
                 contents: message,
                 time: new Date().toLocaleTimeString(),
-                isSelf: false,
-                id: Math.random(),
                 room: room
-            },
-        );
+            })
+      
+            if (response.status === 200) {
+                setMessages(response.data.data)
+                socket.emit('chat message', response.data.data)
+            }
+          } catch (error) {
+            alert("Error! Message was not sent!")
+          }
+
     };
     return (
         <div className="chat__footer">

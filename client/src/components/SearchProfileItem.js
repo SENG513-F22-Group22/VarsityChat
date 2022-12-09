@@ -6,11 +6,27 @@ import {
 } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom"
 import { ChatFill } from 'react-bootstrap-icons';
+import axios from 'axios'
 
-const SearchProfileItem = ({ name }) => {
+const SearchProfileItem = (props) => {
+    const { name, userEmail } = props
     const navigate = useNavigate()
 
-    const handleClick = () => {
+    const handleClick = async () => {
+        try {
+            const response = await axios.get('http://localhost:4000/checkRoom', {
+                user1: name,
+                user2: userEmail
+            })
+            console.log(response.data)
+            if (response.status === 200) {
+                // setMessages(response.data.data)
+                // socket.emit('chat message', response.data.data)
+            }
+          } catch (error) {
+            console.log(error)
+            alert("Error! Message was not sent!")
+          }
         // Need to make a new chatroom with this person
 
         // Not just go to an existing room, need to make a new room

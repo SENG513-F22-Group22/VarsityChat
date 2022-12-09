@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ChevronRight } from 'react-bootstrap-icons';
 // Import components here from https://react-bootstrap.github.io/layout/grid/
 import {
@@ -14,41 +14,37 @@ import {
 } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom"
 import ActiveChat from '../components/ActiveChat';
+import axios from 'axios';
 
-const Chat = ({ socket }) => {
+const Chat = (props) => {
+  const { socket, userEmail } = props
   const navigate = useNavigate()
+  const [chats, setChats] = useState([])
 
-  if (!localStorage.getItem('email')) {
+  useEffect(() => {
+    axios.get('http://localhost:4000/chats',
+      {
+        params: {
+          email: userEmail
+        }
+      })
+      .then((res) => {
+        setChats(res.data);
+      }).catch((err) => {
+        console.log(err);
+      })
+  }, [])
+
+
+  if (!userEmail) {
     return (
       <>
         <h1>Not signed in</h1>
         <a href='/'>Sign in</a>
-    </>
+      </>
     )
   }
 
-
-  // This is a placeholder for the chat list
-  const activeChats = [
-    {
-      name: 'Simon',
-      lastMessage: 'Hey man',
-      unread: 0,
-      id: 0,
-    },
-    {
-      name: 'Luke',
-      lastMessage: 'You done the project?',
-      unread: 1,
-      id: 1,
-    },
-    {
-      name: 'Tim',
-      lastMessage: 'Whats guuud',
-      unread: 69,
-      id: 2,
-    }
-  ]
 
   return (
     // 'html' code goes here 
@@ -70,13 +66,14 @@ const Chat = ({ socket }) => {
 
         <Container id="chats-container">
           {/* Conversation "activeChat" objects are appended here. */}
-          {activeChats.map((chat) => (
+          {chats.map((chat) => (
             <ActiveChat
-              name={chat.name}
-              lastMessage={chat.lastMessage}
+              name={chat.roomName}
+              lastMessage={chat.lastmsg}
               unread={chat.unread}
               socket={socket}
-              key={chat.id}
+              key={chat._id}
+              room={chat._id}
             />
           ))}
 

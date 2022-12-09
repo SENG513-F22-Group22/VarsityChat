@@ -8,6 +8,23 @@ const User = mongoose.model('User', {
     password: { type: String }
 });
 
+// schema for chat room data
+const Chatroom = mongoose.model('Chatroom', {
+    roomName: { type: String },
+    users: [{ type: String }],
+    unread: { type: Number },
+    lastmsg: { type: String }
+});
+
+// schema for message room data
+const Message = mongoose.model('Message', {
+    from: { type: String },
+    room: { type: String },
+    contents: { type: String },
+    time: { type: String },
+    id: { type: Number }
+});
+
 mongoose.connect(CONNECTION_URL)
     .then(() => {
         console.log("Connected to database")
@@ -16,5 +33,7 @@ mongoose.connect(CONNECTION_URL)
     .catch((error) => console.log(error.message));
 
 module.exports = {
-    User
+    User,
+    Message,
+    Chatroom
 }

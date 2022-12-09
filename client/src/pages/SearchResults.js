@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 // Import components here from https://react-bootstrap.github.io/layout/grid/
 import {
     Container,
@@ -13,9 +13,22 @@ import SearchProfileItem from '../components/SearchProfileItem';
 import { ArrowLeft } from 'react-bootstrap-icons';
 import { ChatFill } from 'react-bootstrap-icons';
 import { Image } from 'react-bootstrap-icons';
+import axios from 'axios'
 
 
-const SearchResults = ({ socket }) => {
+const SearchResults = (props) => {
+    const { socket, userEmail } = props
+    const [users, setUsers] = useState([])
+
+    useEffect(() => {
+        axios.get('http://localhost:4000/users',
+          ).then((res) => {
+            setUsers(res.data)
+          }).catch((err) => {
+            console.log(err);
+          })
+      }, [])
+
     const navigate = useNavigate()
     return (
         // 'html' code goes here 
@@ -46,7 +59,12 @@ const SearchResults = ({ socket }) => {
 
                 <Container id="SearchResultsContainer" >
                     {/* This is where SearchProfileItems are appended */}
-                    <SearchProfileItem name="Tim Macphail" />
+                    {users.map((user) => (
+                        <SearchProfileItem userEmail={userEmail} name={user.email} key={user._id} />
+                    ))}
+                    
+                    
+
                 </Container>
 
 

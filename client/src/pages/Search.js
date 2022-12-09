@@ -39,7 +39,7 @@ const Search = ({ socket }) => {
         <Row>
           <Col xs={0} lg={3}></Col>
           <Col lg={6}>
-            <Container id="SearchCourseSelection" className="mt-2">
+            <Container id="SearchCourseContainer" className="mt-2">
               {/* This is where ClassSearchItems are appended */}
 
               <ClassSearchItem courseName="SENG 513" />

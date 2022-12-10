@@ -24,6 +24,11 @@ const Chat = (props) => {
 
 
   useEffect(() => {
+    if (!userEmail) {
+      navigate('/')
+      return
+    }
+    
     axios.get('http://localhost:4000/chats',
       {
         params: {
@@ -32,6 +37,7 @@ const Chat = (props) => {
       })
       .then((res) => {
         setChats(res.data);
+        console.log(res.data);
       }).catch((err) => {
         console.log(err);
       })

@@ -68,7 +68,7 @@ const SearchResults = (props) => {
                 <Row className="mt-2 ms-1">
                     <Col xs={0} lg={3}></Col>
                     <Col xs={4} lg={6}>
-                        <Button variant="outline-secondary">
+                        <Button variant="outline-secondary" onClick={() => navigate("/search")}>
                             <ArrowLeft color="black" size={20} />
                         </Button>
                     </Col>

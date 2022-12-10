@@ -18,7 +18,6 @@ const ChatFooter = (props) => {
 
     const handleSendMessage = async (e) => {
         e.preventDefault();
-        setMessage('');
 
         try {
             const response = await axios.post('http://localhost:4000/messages', {
@@ -30,6 +29,7 @@ const ChatFooter = (props) => {
             })
 
             if (response.status === 200) {
+                setMessage('');
                 let newMessages = response.data.data.messages
                 setMessages(newMessages)
                 socket.emit('chat message', { room: room, messages: newMessages })
@@ -50,7 +50,7 @@ const ChatFooter = (props) => {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                 />
-                <button className="sendBtn">
+                <button className="sendBtn" disabled={!message}>
                     <Send color="white" size={20} />
                 </button>
             </form>

@@ -32,7 +32,7 @@ const ActiveChat = (props) => {
             <Row className='activeChat border-top align-items-center' onClick={handleClick}>
                 <Col xs={2}><Image src="default_prof.png" className="align-middle rounded-circle" width="50"></Image></Col>
                 <Col xs={1}></Col>
-                <Col xs={5}><p className="mb-0 pt-3 fw-bold">name: {name}</p>
+                <Col xs={5}><p className="mb-0 pt-3 fw-bold">{name}</p>
                     <p className="small fw-lighter text-muted">{msgPreview}</p></Col>
                 <Col>
                     {unread > 0 && <Badge pill bg="primary">{unread}</Badge>}

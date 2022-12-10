@@ -57,7 +57,6 @@ const SignIn = (props) => {
         <h1 className="text-start fw-bold mt-4 ms-3">Sign In</h1>
         <Card className="mx-3">
           <Card.Body>
-            <Card.Title className="text-start">Sign In</Card.Title>
             <form onSubmit={handleSignin}>
               <div className="mb-3">
                 <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
@@ -67,7 +66,7 @@ const SignIn = (props) => {
                 <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
                 <input type="password" className="form-control" id="passwordInput" />
               </div>
-              <button type="submit" className="btn btn-primary">Submit</button>
+              <button type="submit" className="btn btn-primary">Sign in</button>
             </form>
             <p className="text-center mt-3">Don't have an account? <a href="/signup">Sign Up</a></p>
           </Card.Body>

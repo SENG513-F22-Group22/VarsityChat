@@ -22,14 +22,29 @@ const ChatBody = (props) => {
             })
             .then((res) => {
                 setMessages(res.data);
+                const chatBody = document.querySelector('.message__container');
+                setTimeout(() => {
+                    chatBody.scrollTo({
+                        top: chatBody.scrollHeight,
+                        behavior: 'smooth'
+                    });
+                }, 100);
             }).catch((err) => {
                 console.log(err);
             })
     }, [])
 
 
-    socket.on('chat message', (data) => {   
+    socket.on('chat message', (data) => {
         setMessages(data.messages);
+        // scroll to bottom of chat
+        const chatBody = document.querySelector('.message__container');
+        setTimeout(() => {
+            chatBody.scrollTo({
+                top: chatBody.scrollHeight,
+                behavior: 'smooth'
+            });
+        }, 100);
     });
 
     const handleLeaveChat = () => {

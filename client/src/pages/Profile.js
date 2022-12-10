@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 // Import components here from https://react-bootstrap.github.io/layout/grid/
 import {
   Button,
@@ -18,6 +18,14 @@ import SaveTrigger from '../components/SaveTrigger';
 const Profile = ({ socket }) => {
   const navigate = useNavigate()
   const [edit, setEdit] = useState(false)
+
+  useEffect(() => {
+    if (!localStorage.getItem('email')) {
+      navigate('/')
+      return;
+    }
+  }, [])
+
 
   const signOut = () => {
     localStorage.removeItem('email')

@@ -17,18 +17,21 @@ export default function BottomNav() {
             {/* Get rid of the border radius on the button group */}
             <ButtonGroup size="lg" className='w-100'>
                 <Button
-                    disabled={window.location.href.split("/")[3] === "search"} variant={window.location.href.split("/")[3] === "search" ? "dark" : "light"}
+                    disabled={window.location.href.split("/")[3] === "search" || !localStorage.getItem('email')}
+                    variant={window.location.href.split("/")[3] === "search" ? "dark" : "light"}
                     onClick={() => navigate("/search")}
                     className="rounded-0"
                 >Search
                 </Button>
                 <Button
-                    disabled={window.location.href.split("/")[3] === "chat"} variant={window.location.href.split("/")[3] === "chat" ? "dark" : "light"}
+                    disabled={window.location.href.split("/")[3] === "chat" || !localStorage.getItem('email')}
+                    variant={window.location.href.split("/")[3] === "chat" ? "dark" : "light"}
                     onClick={() => navigate("/chat")}
                 >Chat
                 </Button>
                 <Button
-                    disabled={window.location.href.split("/")[3] === "profile"} variant={window.location.href.split("/")[3] === "profile" ? "dark" : "light"}
+                    disabled={window.location.href.split("/")[3] === "profile" || !localStorage.getItem('email')}
+                    variant={window.location.href.split("/")[3] === "profile" ? "dark" : "light"}
                     onClick={() => navigate("/profile")}
                     className="rounded-0"
                 >Profile

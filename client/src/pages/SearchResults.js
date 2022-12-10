@@ -23,20 +23,18 @@ const SearchResults = (props) => {
     const [filteredUsers, setFilteredUsers] = useState([])
 
     useEffect(() => {
-        const classs = window.location.href.split("=").pop();
-        const interpret = classs.replace(/%20/g, " ");
-        console.log(interpret);
+        const course = window.location.href.split("=").pop()
+            .replace(/%20/g, " ")
 
         axios.get('http://localhost:4000/users', {
             params: {
-                email: userEmail,
-                class: interpret
+                course: course
             }
         }).then((res) => {
 
             // remove current user from list
             let validUsers = []
-            for (let user of res.data) {
+            for (let user of res.data.users) {
                 if (user.email !== userEmail) {
                     validUsers.push(user)
                 }

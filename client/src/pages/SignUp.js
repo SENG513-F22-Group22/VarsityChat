@@ -77,7 +77,7 @@ const SignUp = (props) => {
                 <label htmlFor="exampleInputPassword1" className="form-label">Confirm Password</label>
                 <input type="password" className="form-control" id="passwordConfirmInput" />
               </div>
-              <button type="submit" className="btn btn-primary">Submit</button>
+              <button type="submit" className="btn btn-primary">Sign in</button>
             </form>
             <p className="text-center mt-3">Already have an account? <a href="/">Sign In</a></p>
           </Card.Body>

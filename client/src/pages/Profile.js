@@ -30,7 +30,7 @@ const Profile = ({ socket }) => {
       <Container fluid="lg">
         <Row>
           <Col xs={0} lg={4}></Col>
-          <Col xs={2} lg={1}><h2 className="text-start fw-bold mt-4 ms-3">Profile</h2></Col>
+          <Col xs={2} lg={1}><h2 className="text-start fw-bold mt-4 ms-1">Profile</h2></Col>
           <Col xs={6} lg={2}></Col>
           <Col xs={4} lg={1}><Button variant="outline-primary" size="sm" className="mt-4 ms-2" onClick={signOut}>Sign Out</Button></Col>
           <Col xs={0} lg={4}></Col>
@@ -61,11 +61,11 @@ const Profile = ({ socket }) => {
               </Form.Group>
               <Form.Group className="mb-2" controlId="formFirstName">
                 <Form.Label>First Name</Form.Label>
-                <Form.Control type="text" placeholder="e.g. Steve" disabled={edit} />
+                <Form.Control type="text" placeholder="e.g. Steve" disabled={!edit} />
               </Form.Group>
               <Form.Group className="mb-3" controlId="forLastName">
                 <Form.Label>Last Name</Form.Label>
-                <Form.Control type="text" placeholder="e.g. Stevenson" disabled={edit} />
+                <Form.Control type="text" placeholder="e.g. Stevenson" disabled={!edit} />
               </Form.Group>
               <p className='text-black-50 text-start ms-2 mt-2 mb-2 negative-margin-bottom'>Enrolled Classes</p>
               <ul className="class_list">

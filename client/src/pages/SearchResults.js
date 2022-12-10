@@ -42,7 +42,7 @@ const SearchResults = (props) => {
     const navigate = useNavigate()
     return (
         // 'html' code goes here 
-        <>
+      
             <Container>
                 <Row>
                     <Col xs={0} lg={3}></Col>
@@ -95,8 +95,7 @@ const SearchResults = (props) => {
                     </Col>
                     <Col xs={0} lg={3}></Col>
                 </Row>
-
-        </>
+                </Container>
     )
 }
 

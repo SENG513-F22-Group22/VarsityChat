@@ -11,48 +11,53 @@ import ChatBody from '../components/ChatBody';
 import ChatFooter from '../components/ChatFooter';
 
 const ChatRoom = (props) => {
-    const { socket, userEmail } = props
-    const navigate = useNavigate()
-    const [messages, setMessages] = useState([])
-    const room = window.location.href.split('?')[1].split('=')[1]
+  const { socket, userEmail } = props
+  const navigate = useNavigate()
+  const [messages, setMessages] = useState([])
+  const room = window.location.href.split('?')[1].split('=')[1]
 
 
-    useEffect(() => {
-        // ensure we're only in one room at a time
-        socket.disconnect()
-        socket.connect()
-        socket.emit('join', room)
+  useEffect(() => {
+    if (!localStorage.getItem('email')) {
+      navigate('/')
+      return;
+    }
 
-        axios.get('http://localhost:4000/messages',
-          {
-            params: {
-              room: room
-            }
-          })
-          .then((res) => {
-            setMessages(res.data);
+    // ensure we're only in one room at a time
+    socket.disconnect()
+    socket.connect()
+    socket.emit('join', room)
 
-          }).catch((err) => {
-            console.log(err);
-          })
-    }, [room, socket])
+    axios.get('http://localhost:4000/messages',
+      {
+        params: {
+          room: room
+        }
+      })
+      .then((res) => {
+        setMessages(res.data);
+
+      }).catch((err) => {
+        console.log(err);
+      })
+  }, [room, socket])
 
 
-    return (
-        <>
-            <ChatBody
-                socket={socket}
-                messages={messages}
-                setMessages={setMessages}
-            />
-            <ChatFooter
-                socket={socket}
-                room={room}
-                setMessages={setMessages}
-                userEmail={userEmail}
-            />
-        </>
-    )
+  return (
+    <>
+      <ChatBody
+        socket={socket}
+        messages={messages}
+        setMessages={setMessages}
+      />
+      <ChatFooter
+        socket={socket}
+        room={room}
+        setMessages={setMessages}
+        userEmail={userEmail}
+      />
+    </>
+  )
 }
 
 export default ChatRoom

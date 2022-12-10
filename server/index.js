@@ -32,6 +32,8 @@ app.get("/users", chats.getUsers);
 app.get("/messages", chats.getMessages);
 app.post("/messages", chats.setMessages);
 
+app.get("/classes", chats.getClasses);
+
 
 http.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

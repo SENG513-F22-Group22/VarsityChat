@@ -13,8 +13,10 @@ import {
 import { useNavigate } from "react-router-dom"
 import ClassSearchItem from '../components/ClassSearchItem';
 import { ChevronRight } from 'react-bootstrap-icons';
+import axios from 'axios';
 
 const Search = ({ socket }) => {
+  const [classes, setClasses] = useState([])
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -22,6 +24,24 @@ const Search = ({ socket }) => {
       navigate('/')
       return;
     }
+
+    // get all classes from database
+    axios.get('http://localhost:4000/classes', {
+      params: {
+        email: localStorage.getItem('email')
+      }
+    }).then((res) => {
+      setClasses(res.data.classes)
+      setClasses([
+        "CPSC 481",
+        "SENG 513",
+        "SENG 550",
+        "CPSC 413",
+        "CPSC 441"
+      ])
+    }).catch((err) => {
+      console.log(err)
+    })
   }, [])
 
   return (
@@ -50,9 +70,16 @@ const Search = ({ socket }) => {
           <Col lg={6}>
             <Container id="SearchCourseContainer" className="mt-2">
               {/* This is where ClassSearchItems are appended */}
-
-              <ClassSearchItem courseName="SENG 513" />
-              <ClassSearchItem courseName="all" />
+              <ListGroup id="SearchClassSelection" variant="flush">
+                {classes.map((course) =>  (
+                    <ListGroup.Item key={course}>
+                      <ClassSearchItem
+                        courseName={course}
+                        key={course}
+                      />
+                    </ListGroup.Item>
+                  ))}
+              </ListGroup>
             </Container>
           </Col>
         </Row>
@@ -75,7 +102,7 @@ export default Search
 // </ListGroup>
 // </Container> */}
 
-    // {/* 'html' code goes here 
+    // {/* 'html' code goes here
     // <>
     //   <Container>
     //     <Row>

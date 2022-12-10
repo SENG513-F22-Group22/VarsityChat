@@ -57,7 +57,6 @@ const SignIn = (props) => {
         <h1 className="text-start fw-bold mt-4 ms-3">Sign In</h1>
         <Card className="mx-3">
           <Card.Body>
-            <Card.Title className="text-start">Sign In</Card.Title>
             <form onSubmit={handleSignin}>
               <div className="mb-3">
                 <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>

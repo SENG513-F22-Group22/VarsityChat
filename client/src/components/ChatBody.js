@@ -9,7 +9,6 @@ import axios from 'axios';
 const ChatBody = (props) => {
     const { socket, messages, setMessages } = props
     const navigate = useNavigate();
-    const chatBody = document.querySelector('.message__container');
 
 
 
@@ -23,6 +22,7 @@ const ChatBody = (props) => {
             })
             .then((res) => {
                 setMessages(res.data);
+                const chatBody = document.querySelector('.message__container');
                 setTimeout(() => {
                     chatBody.scrollTo({
                         top: chatBody.scrollHeight,
@@ -38,6 +38,7 @@ const ChatBody = (props) => {
     socket.on('chat message', (data) => {
         setMessages(data.messages);
         // scroll to bottom of chat
+        const chatBody = document.querySelector('.message__container');
         setTimeout(() => {
             chatBody.scrollTo({
                 top: chatBody.scrollHeight,

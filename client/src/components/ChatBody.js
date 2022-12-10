@@ -9,6 +9,7 @@ import axios from 'axios';
 const ChatBody = (props) => {
     const { socket, messages, setMessages } = props
     const navigate = useNavigate();
+    const chatBody = document.querySelector('.message__container');
 
 
 
@@ -22,14 +23,27 @@ const ChatBody = (props) => {
             })
             .then((res) => {
                 setMessages(res.data);
+                setTimeout(() => {
+                    chatBody.scrollTo({
+                        top: chatBody.scrollHeight,
+                        behavior: 'smooth'
+                    });
+                }, 100);
             }).catch((err) => {
                 console.log(err);
             })
     }, [])
 
 
-    socket.on('chat message', (data) => {   
+    socket.on('chat message', (data) => {
         setMessages(data.messages);
+        // scroll to bottom of chat
+        setTimeout(() => {
+            chatBody.scrollTo({
+                top: chatBody.scrollHeight,
+                behavior: 'smooth'
+            });
+        }, 100);
     });
 
     const handleLeaveChat = () => {

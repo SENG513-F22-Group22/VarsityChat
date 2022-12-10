@@ -89,11 +89,18 @@ const getRooms = (req, res) => {
 
 
 const getUsers = (req, res) => {
+    const { course } = req.query
+
     User.find((err, found) => {
         if (err) {
-            console.log(err)
+            res.status(500).json({ error: "Internal server error" })
         }
-        res.send(found)
+        else if (found) {
+            res.status(200).json({ users: found })
+        }
+        else {
+            res.status(404).json({ error: "User not found" })
+        }
     })
 }
 

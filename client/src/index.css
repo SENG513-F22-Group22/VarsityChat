@@ -67,7 +67,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background-color: #d9d9d9;
+  background-color: #e7e6e6;
 }
 
 .message__container {
@@ -117,19 +117,21 @@
   background-color: #0da1fd;
 }
 .message__recipient {
-  background-color: #f5ccc2;
+  background-color: white;
   width: 300px;
   padding: 10px;
   border-radius: 10px;
   font-size: 15px;
+  box-shadow: 5px 5px 10px grey;
 }
 .message__sender {
-  background-color: rgb(194, 243, 194);
+  background-color: #b1fa79;
   max-width: 300px;
   padding: 10px;
   border-radius: 10px;
   margin-left: auto;
   font-size: 15px;
+  box-shadow: 5px 5px 10px grey;
 }
 .message__chats > p {
   font-size: 13px;

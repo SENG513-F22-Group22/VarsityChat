@@ -28,7 +28,7 @@ const Chat = (props) => {
       navigate('/')
       return
     }
-    
+
     axios.get('http://localhost:4000/chats',
       {
         params: {
@@ -92,17 +92,17 @@ const Chat = (props) => {
           <Col xs={0} lg={3}></Col>
           <Col lg={6}>
             <Container id="chats-container">
-          {/* Conversation "activeChat" objects are appended here. */}
-          {chats.map((chat) => (
-            <ActiveChat
-              name={chat.roomName}
-              lastMessage={chat.lastmsg}
-              unread={chat.unread}
-              socket={socket}
-              key={chat._id}
-              room={chat._id}
-              setChats={setChats}
-            />
+              {/* Conversation "activeChat" objects are appended here. */}
+              {chats.map((chat) => (
+                <ActiveChat
+                  name={chat.roomName}
+                  lastMessage={chat.lastmsg}
+                  unread={chat.unread}
+                  socket={socket}
+                  key={chat._id}
+                  room={chat._id}
+                  setChats={setChats}
+                />
               ))}
 
 

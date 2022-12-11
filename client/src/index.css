@@ -170,11 +170,6 @@
   /* background-color: antiquewhite; */
 }
 
-#SearchResultsContainer {
-  overflow-y: scroll;
-  height: 92%;
-}
-
 #chats-container {
   overflow-y: scroll;
   height: 100%;

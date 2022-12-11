@@ -13,7 +13,6 @@ const setNames = (req, res) => {
         else {
             const newFound = found
             let nameChanged = false
-            console.log(found)
 
             if (newFound.firstName) {
                 newFound.firstName = fName
@@ -43,7 +42,6 @@ const setNames = (req, res) => {
 const getNames = (req, res) => {
     userEmail = req.query.email
 
-    console.log(userEmail)
     User.findOne({ email: userEmail }, (err, found) => {
         if (err) {
             console.log(err)

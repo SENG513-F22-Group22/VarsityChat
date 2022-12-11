@@ -54,8 +54,6 @@ const SearchResults = (props) => {
     }
 
     return (
-        // 'html' code goes here 
-
         <Container>
             <Row>
                 <Col xs={0} lg={3}></Col>
@@ -100,12 +98,10 @@ const SearchResults = (props) => {
             <Row>
                 <Col xs={0} lg={3}></Col>
                 <Col lg={6}>
-                    <Container id="SearchResultsContainer" >
-                        {/* This is where SearchProfileItems are appended */}
-                        {filteredUsers.map((user) => (
-                            <SearchProfileItem userEmail={userEmail} email={user.email} key={user._id} />
-                        ))}
-                    </Container>
+                    {/* This is where SearchProfileItems are appended */}
+                    {filteredUsers.map((user) => (
+                        <SearchProfileItem userEmail={userEmail} email={user.email} key={user._id} />
+                    ))}
                 </Col>
                 <Col xs={0} lg={3}></Col>
             </Row>

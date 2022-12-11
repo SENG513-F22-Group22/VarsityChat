@@ -18,7 +18,17 @@ const ActiveChat = (props) => {
     const navigate = useNavigate()
     const previewLength = 10
     const msgPreview = lastMessage.length > previewLength ? lastMessage.substring(0, previewLength) + '...' : lastMessage
-    const acName = name.split(' ')[1]
+
+    // Splits the room name to display the name of the other user
+    let acName;
+    const splitName1 = name.split(' ')[0]
+    const splitName2 = name.split(' ')[1]
+    if (splitName1 == localStorage.getItem('email')) {
+        acName = splitName2
+    } else {
+        acName = splitName1
+    }
+
 
 
 

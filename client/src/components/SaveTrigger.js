@@ -2,13 +2,42 @@ import React, { useState, useRef } from 'react';
 import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/Overlay';
 import Tooltip from 'react-bootstrap/Tooltip';
+import axios from 'axios'
 
-function SaveTrigger({ edit, setEdit }) {
+function SaveTrigger(props) {
+    const { edit, setEdit, fName, lName, userEmail, defualtFirstName, defaultLastName } = props
     const [show, setShow] = useState(false);
     const [text, setText] = useState('Edit');
     const target = useRef(null);
 
-    const handleClick = () => {
+    const handleClick = async () => {
+        if (edit) {
+            let newFName = ""
+            let newLName = ""
+            if (defualtFirstName !== fName) {
+                newFName = fName
+            }
+
+            if (defaultLastName !== lName) {
+                newLName = lName
+            }
+
+            try {
+
+                const response = await axios.post('http://localhost:4000/profileName',
+                            { email: userEmail,
+                            fName: newFName,
+                            lName: newLName })
+
+
+                if (response.status === 200) {
+
+                }
+            } catch (err) {
+                alert("Error! Name was not set!")
+            }
+        }
+
         setEdit(!edit);
         if (text === 'Edit') {
             setText('Save')
@@ -16,7 +45,10 @@ function SaveTrigger({ edit, setEdit }) {
             setShow(!show);
             setText('Edit')
         }
+
     };
+
+
 
     return (
         <>

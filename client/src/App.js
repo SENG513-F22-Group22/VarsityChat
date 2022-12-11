@@ -32,7 +32,7 @@ function App() {
           <Route path="/chatroom" element={<ChatRoom socket={socket} userEmail={userEmail} />}></Route>
           <Route path="/search" element={<Search />}></Route>
           <Route path="/searchresults" element={<SearchResults userEmail={userEmail} />}></Route>
-          <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/profile" element={<Profile userEmail={userEmail} />}></Route>
           <Route path="/" element={<SignIn setUserEmail={setUserEmail} />}></Route>
           <Route path="/signup" element={<SignUp setUserEmail={setUserEmail} />}></Route>
         </Routes>

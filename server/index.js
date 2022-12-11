@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const authorization = require("./authorization.js")
 const chats = require("./chats.js")
 const course = require("./course.js")
+const profile = require("./profile.js")
 
 const app = express();
 const http = require('http').Server(app);
@@ -35,6 +36,8 @@ app.post("/messages", chats.setMessages);
 
 app.get("/classes", chats.getClasses);
 
+app.get("/profileName", profile.getNames)
+app.post("/profileName", profile.setNames)
 
 // this is for the new Courses entry created for the database
 // it has the master list of all classes

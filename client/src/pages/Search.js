@@ -57,15 +57,15 @@ const Search = ({ socket }) => {
           <Col xs={0} lg={3}></Col>
         </Row>
 
-        <Row>
+        <Row className="mb-0">
           <Col xs={0} lg={3}></Col>
           <Col lg={6}>
-            <p className='border-bottom text-black-50 text-start ms-2 mt-2 mb-1 negative-margin-bottom'>Enrolled Courses</p>
+            <p className='border-bottom text-black-50 text-start ms-2 mt-2 pb-2 mb-0'>Enrolled Courses</p>
           </Col>
           <Col xs={0} lg={3}></Col>
         </Row>
 
-        <Row>
+        <Row className="mt-0">
           <Col xs={0} lg={3}></Col>
           <Col lg={6}>
             {/* This is where ClassSearchItems are appended */}

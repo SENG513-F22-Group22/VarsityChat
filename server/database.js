@@ -6,7 +6,7 @@ const CONNECTION_URL = `mongodb+srv://SENG513PROJ:${process.env.MONGO_PW}@cluste
 const User = mongoose.model('User', {
     email: { type: String },
     password: { type: String },
-    classes: [{ type: String }]
+    courses: [{ type: String }]
 });
 
 // schema for chat room data
@@ -26,6 +26,10 @@ const Message = mongoose.model('Message', {
     id: { type: Number }
 });
 
+const Course = mongoose.model('Course', {
+    courseName: { type: String },
+});
+
 mongoose.connect(CONNECTION_URL)
     .then(() => {
         console.log("Connected to database")
@@ -36,5 +40,6 @@ mongoose.connect(CONNECTION_URL)
 module.exports = {
     User,
     Message,
-    Chatroom
+    Chatroom,
+    Course
 }

@@ -16,11 +16,11 @@ const ClassSearchItem = ({ courseName }) => {
 
     return (
         <>
-            <Row className='classSearchItem mb-3 border-bottom align-items-center' onClick={handleClick}>
-                <Col xs={4}><p className="">{courseName}</p></Col>
+            <Row className='classSearchItem mb-0 mt-0 align-items-center' onClick={handleClick}>
+                <Col xs={4}><p className="mt-3">{courseName}</p></Col>
                 <Col xs={7}></Col>
                 <Col xs={1}>
-                    <ChevronRight className="mb-3" color="black" size={20} />
+                    <ChevronRight className="mb-1" color="black" size={20} />
                 </Col>
             </Row>
         </>

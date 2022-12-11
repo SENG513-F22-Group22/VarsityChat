@@ -60,7 +60,7 @@ const Search = ({ socket }) => {
         <Row>
           <Col xs={0} lg={3}></Col>
           <Col lg={6}>
-            <p className='border-bottom text-black-50 text-start ms-2 mt-2 mb-2 negative-margin-bottom'>Enrolled Classes</p>
+            <p className='border-bottom text-black-50 text-start ms-2 mt-2 mb-1 negative-margin-bottom'>Enrolled Classes</p>
           </Col>
           <Col xs={0} lg={3}></Col>
         </Row>
@@ -68,19 +68,18 @@ const Search = ({ socket }) => {
         <Row>
           <Col xs={0} lg={3}></Col>
           <Col lg={6}>
-            <Container id="SearchCourseContainer" className="mt-2">
-              {/* This is where ClassSearchItems are appended */}
-              <ListGroup id="SearchClassSelection" variant="flush">
-                {classes.map((course) =>  (
-                    <ListGroup.Item key={course}>
-                      <ClassSearchItem
-                        courseName={course}
-                        key={course}
-                      />
-                    </ListGroup.Item>
-                  ))}
-              </ListGroup>
-            </Container>
+            {/* This is where ClassSearchItems are appended */}
+            <ListGroup id="SearchClassSelection" variant="flush">
+              {classes.map((course) => (
+                <ListGroup.Item key={course}>
+                  <ClassSearchItem
+                    courseName={course}
+                    key={course}
+                  />
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+
           </Col>
         </Row>
       </Container>

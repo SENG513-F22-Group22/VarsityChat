@@ -61,7 +61,7 @@ const ChatBody = (props) => {
             <Row>
                 <header className="chat__mainHeader">
                     <Col xs={2} lg={2}>
-                        <Button className="ms-2" variant="outline-secondary" onClick={() => navigate("/search")}>
+                        <Button className="ms-2" variant="outline-secondary" onClick={() => navigate("/chat")}>
                             <ArrowLeft color="black" size={20} />
                         </Button>
                     </Col>

@@ -75,7 +75,7 @@ const Profile = ({ socket }) => {
                 <Form.Label>Last Name</Form.Label>
                 <Form.Control type="text" placeholder="e.g. Stevenson" disabled={!edit} />
               </Form.Group>
-              <p className='text-black-50 text-start ms-2 mt-2 mb-2 negative-margin-bottom'>Enrolled Classes</p>
+              <p className='text-black-50 text-start ms-2 mt-2 mb-2 negative-margin-bottom'>Enrolled Courses</p>
               <ul className="class_list">
                 <li>SENG 513</li>
                 <li>SENG 550</li>

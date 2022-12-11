@@ -60,7 +60,7 @@ const Search = ({ socket }) => {
         <Row>
           <Col xs={0} lg={3}></Col>
           <Col lg={6}>
-            <p className='border-bottom text-black-50 text-start ms-2 mt-2 mb-1 negative-margin-bottom'>Enrolled Classes</p>
+            <p className='border-bottom text-black-50 text-start ms-2 mt-2 mb-1 negative-margin-bottom'>Enrolled Courses</p>
           </Col>
           <Col xs={0} lg={3}></Col>
         </Row>

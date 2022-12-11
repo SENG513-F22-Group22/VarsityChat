@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 // Import components here from https://react-bootstrap.github.io/layout/grid/
 import {
     Button,
@@ -11,30 +11,31 @@ import { useNavigate } from "react-router-dom"
 export default function BottomNav() {
     const navigate = useNavigate()
 
+    const location = window.location.href.split("/")[3].split("?")[0]
+
     return (
         <Container>
-            {/* Get rid of the border radius on the button group */}
             <ButtonGroup size="lg" className='fixed-bottom w-100'>
                 <Button
-                    disabled={window.location.href.split("/")[3] === "search" || !localStorage.getItem('email')}
-                    variant={window.location.href.split("/")[3] === "search" ? "dark" : "light"}
+                    variant={location === "search" || location === "searchresults" ? "dark" : "light"}
                     onClick={() => navigate("/search")}
                     className="rounded-0"
-                >Search
+                >
+                    Search
                 </Button>
                 <Button
-                    disabled={window.location.href.split("/")[3] === "chat" || !localStorage.getItem('email')}
-                    variant={window.location.href.split("/")[3] === "chat" ? "dark" : "light"}
+                    variant={location === "chat" || location === "chatroom" ? "dark" : "light"}
                     onClick={() => navigate("/chat")}
                     className="rounded-0"
-                >Chat
+                >
+                    Chat
                 </Button>
                 <Button
-                    disabled={window.location.href.split("/")[3] === "profile" || !localStorage.getItem('email')}
-                    variant={window.location.href.split("/")[3] === "profile" ? "dark" : "light"}
+                    variant={location === "profile" ? "dark" : "light"}
                     onClick={() => navigate("/profile")}
                     className="rounded-0"
-                >Profile
+                >
+                    Profile
                 </Button>
             </ButtonGroup >
         </Container >

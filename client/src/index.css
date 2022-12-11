@@ -169,3 +169,24 @@
   color: #bfbfc1;
   /* background-color: antiquewhite; */
 }
+
+#SearchResultsContainer {
+  overflow-y: scroll;
+  height: 92%;
+}
+
+#chats-container {
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.container {
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.container::-webkit-scrollbar {
+  display: none;
+}

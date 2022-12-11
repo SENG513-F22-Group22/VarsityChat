@@ -12,7 +12,7 @@ export default function BottomNav() {
 
     return (
 
-        <Card className="fixed-bottom" variant="bottom">
+        <Card className="bottomNav fixed-bottom" variant="bottom">
             <ButtonGroup size="lg">
                 <Button disabled={window.location.href.split("/")[3] === "search"} variant={window.location.href.split("/")[3] === "search" ? "dark" : "light"} onClick={() => navigate("/search")} >Search</Button>
                 <Button disabled={window.location.href.split("/")[3] === "chat"} variant={window.location.href.split("/")[3] === "chat" ? "dark" : "light"} onClick={() => navigate("/chat")} >Chat</Button>

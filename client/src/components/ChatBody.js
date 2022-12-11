@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {
-
+    Button
 } from 'react-bootstrap';
+import { ArrowLeft } from 'react-bootstrap-icons';
 import { useNavigate } from "react-router-dom"
 import Message from './Message';
 import axios from 'axios';
@@ -54,11 +55,11 @@ const ChatBody = (props) => {
     return (
         <>
             <header className="chat__mainHeader">
+                <Button variant="outline-secondary" onClick={() => navigate("/search")}>
+                    <ArrowLeft color="black" size={20} />
+                </Button>
                 <p>Profile Pic and Name and last seen
                 </p>
-                <button className="leaveChat__btn" onClick={handleLeaveChat}>
-                    LEAVE CHAT
-                </button>
             </header>
 
             <div className="message__container">

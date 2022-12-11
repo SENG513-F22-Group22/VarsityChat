@@ -4,6 +4,7 @@ import {
     Button,
     Card,
     ButtonGroup,
+    Container,
 } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom"
 
@@ -11,9 +12,9 @@ export default function BottomNav() {
     const navigate = useNavigate()
 
     return (
-        <Card className="fixed-bottom" variant="bottom">
+        <Container>
             {/* Get rid of the border radius on the button group */}
-            <ButtonGroup size="lg" className='w-100'>
+            <ButtonGroup size="lg" className='fixed-bottom w-100'>
                 <Button
                     disabled={window.location.href.split("/")[3] === "search" || !localStorage.getItem('email')}
                     variant={window.location.href.split("/")[3] === "search" ? "dark" : "light"}
@@ -25,6 +26,7 @@ export default function BottomNav() {
                     disabled={window.location.href.split("/")[3] === "chat" || !localStorage.getItem('email')}
                     variant={window.location.href.split("/")[3] === "chat" ? "dark" : "light"}
                     onClick={() => navigate("/chat")}
+                    className="rounded-0"
                 >Chat
                 </Button>
                 <Button
@@ -35,6 +37,6 @@ export default function BottomNav() {
                 >Profile
                 </Button>
             </ButtonGroup >
-        </Card >
+        </Container >
     )
 }

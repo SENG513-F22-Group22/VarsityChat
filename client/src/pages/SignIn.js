@@ -38,6 +38,7 @@ const SignIn = (props) => {
   }
 
   if (localStorage.getItem('email')) {
+    setUserEmail(localStorage.getItem('email'))
     return (
       <>
         <h1>You are already signed in</h1>

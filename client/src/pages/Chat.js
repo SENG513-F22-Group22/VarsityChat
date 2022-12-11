@@ -37,7 +37,6 @@ const Chat = (props) => {
       })
       .then((res) => {
         setChats(res.data);
-        console.log(res.data);
       }).catch((err) => {
         console.log(err);
       })

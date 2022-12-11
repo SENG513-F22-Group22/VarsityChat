@@ -91,7 +91,7 @@ const getRooms = (req, res) => {
 const getUsers = (req, res) => {
     const { course } = req.query
 
-    User.find((err, found) => {
+    User.find({ courses: course }, (err, found) => {
         if (err) {
             res.status(500).json({ error: "Internal server error" })
         }

@@ -18,10 +18,14 @@ const ActiveChat = (props) => {
     const navigate = useNavigate()
     const previewLength = 10
     const msgPreview = lastMessage.length > previewLength ? lastMessage.substring(0, previewLength) + '...' : lastMessage
+    const acName = name.split(' ')[1]
 
-    socket.on('chat room', (data) => {     
+
+
+
+    socket.on('chat room', (data) => {
         setChats(data.chats);
-      });
+    });
 
     const handleClick = () => {
         navigate('/chatroom?name=' + room)
@@ -32,7 +36,7 @@ const ActiveChat = (props) => {
             <Row className='activeChat border-top align-items-center' onClick={handleClick}>
                 <Col xs={2}><Image src="default_prof.png" className="align-middle rounded-circle" width="50"></Image></Col>
                 <Col xs={1}></Col>
-                <Col xs={5}><p className="mb-0 pt-3 fw-bold">{name}</p>
+                <Col xs={5}><p className="mb-0 pt-3 fw-bold">{acName}</p>
                     <p className="small fw-lighter text-muted">{msgPreview}</p></Col>
                 <Col>
                     {unread > 0 && <Badge pill bg="primary">{unread}</Badge>}

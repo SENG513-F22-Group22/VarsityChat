@@ -33,6 +33,7 @@ app.get("/users", chats.getUsers);
 
 app.get("/messages", chats.getMessages);
 app.post("/messages", chats.setMessages);
+app.delete("/deleteChat", chats.deleteChatroom);
 app.post("/zeroUnread", chats.zeroUnreadMsgs);
 
 app.get("/classes", chats.getClasses);

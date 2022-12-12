@@ -85,9 +85,23 @@ const getRooms = (req, res) => {
             // TODO: if user was not found by email (but user should be logged in here so some kinda error)
         }
     })
-
-
 }
+
+
+
+const deleteChatroom = (req, res) => {
+    const roomID = req.query.room
+    Chatroom.findByIdAndRemove({_id: roomID}, (err, found) => {
+    if (err) {
+        res.status(500).json({error: "Internal server error"})
+    }
+    if (found) {
+        res.status(200).json({room: found._id})
+        // TODO delete all messages associated to that room
+    }})
+}
+    
+
 
 
 const getUsers = (req, res) => {
@@ -153,7 +167,7 @@ const getClasses = (req, res) => {
 }
 
 const zeroUnreadMsgs = (req, res) => {
-
+    const userEmail = req.query.email
     Chatroom.findOne({_id: req.body.room}, (err, found) => {
         if (err) {
             console.log(err)
@@ -197,5 +211,6 @@ module.exports = {
     getUsers,
     getClasses,
     zeroUnreadMsgs,
-    getRecipient
+    getRecipient,
+    deleteChatroom
 }

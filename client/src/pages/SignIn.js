@@ -32,8 +32,12 @@ const SignIn = (props) => {
       }
 
     } catch (error) {
-      console.log(error)
-      alert("Incorrect email or password")
+      if (error.response.status === 401) {
+        alert("Incorrect email or password")
+      }
+      else {
+        alert("Error")
+      }
     }
   }
 

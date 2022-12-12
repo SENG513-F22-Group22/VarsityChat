@@ -14,17 +14,41 @@ import {
 } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom"
 import SaveTrigger from '../components/SaveTrigger';
+import axios from 'axios'
 
-const Profile = ({ socket }) => {
+const Profile = (props) => {
+  const { socket, userEmail } = props
   const navigate = useNavigate()
   const [edit, setEdit] = useState(false)
+  const [fName, setFName] = useState("Enter a first name...")
+  const [lName, setLName] = useState("Enter a last name...")
+  let defaultFirstName = "Enter a first name..."
+  let defaultLastName = "Enter a last name..."
 
   useEffect(() => {
     if (!localStorage.getItem('email')) {
       navigate('/')
       return;
     }
-  }, [])
+    else {
+      axios.get('http://localhost:4000/profileName',
+        {
+          params: {
+            email: userEmail,
+          }
+        }).then((res) => {
+
+          if (res.fName !== "") {
+            setFName(res.data.fName)
+          }
+
+          if (res.lName !== "") {
+            setLName(res.data.lName)
+          }
+
+        })
+    }
+  }, [userEmail])
 
 
   const signOut = () => {
@@ -55,7 +79,14 @@ const Profile = ({ socket }) => {
           </Col>
           <Col xs={3} lg={1}></Col>
           <Col xs={3} lg={1}>
-            <SaveTrigger edit={edit} setEdit={setEdit} />
+            <SaveTrigger 
+            edit={edit} 
+            setEdit={setEdit} 
+            fName={fName} 
+            lName={lName} 
+            userEmail={userEmail} 
+            defaultFirstName={defaultFirstName}
+            defaultLastName={defaultLastName} />
           </Col>
           <Col sm={0} lg={4}></Col>
         </Row>
@@ -69,11 +100,23 @@ const Profile = ({ socket }) => {
               </Form.Group>
               <Form.Group className="mb-2" controlId="formFirstName">
                 <Form.Label>First Name</Form.Label>
-                <Form.Control type="text" placeholder="e.g. Steve" disabled={!edit} />
+                <Form.Control
+                  type="text"
+                  placeholder={fName}
+                  onChange={(e) => {
+                    setFName(e.target.value)
+                  }}
+                  disabled={!edit} />
               </Form.Group>
               <Form.Group className="mb-3" controlId="forLastName">
                 <Form.Label>Last Name</Form.Label>
-                <Form.Control type="text" placeholder="e.g. Stevenson" disabled={!edit} />
+                <Form.Control
+                  type="text"
+                  placeholder={lName}
+                  onChange={(e) => {
+                    setLName(e.target.value)
+                  }}
+                  disabled={!edit} />
               </Form.Group>
               <p className='text-black-50 text-start ms-2 mt-2 mb-2 negative-margin-bottom'>Enrolled Courses</p>
               <ul className="class_list">

@@ -6,14 +6,16 @@ const CONNECTION_URL = `mongodb+srv://SENG513PROJ:${process.env.MONGO_PW}@cluste
 const User = mongoose.model('User', {
     email: { type: String },
     password: { type: String },
-    courses: [{ type: String }]
+    courses: [{ type: String }],
+    firstName: { type: String },
+    lastName: { type: String },
 });
 
 // schema for chat room data
 const Chatroom = mongoose.model('Chatroom', {
     roomName: { type: String },
     users: [{ type: String }],
-    unread: { type: Number },
+    unread: [{ type: Number }],
     lastmsg: { type: String }
 });
 

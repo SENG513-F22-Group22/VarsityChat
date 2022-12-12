@@ -2,6 +2,9 @@ const { User } = require("./database.js")
 
 const signup = (req, res) => {
     const { email, password } = req.body
+    const courses = []
+    const firstName = ""
+    const lastName = ""
 
     User.findOne({ email: email }, (err, found) => {
         if (err) {
@@ -12,7 +15,10 @@ const signup = (req, res) => {
 
             const newUser = new User({
                 email,
-                password
+                password,
+                courses,
+                firstName,
+                lastName
             })
 
             newUser.save((err, saved) => {

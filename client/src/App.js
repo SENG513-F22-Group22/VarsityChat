@@ -23,7 +23,22 @@ function App() {
     <BrowserRouter>
       <Container
         style={{
-          height: "90vh",
+          height: "5vh"
+        }}
+        className="
+        fixed-top
+        justify-content-center
+        align-items-center
+        w-100
+        "
+      >
+        {localStorage.getItem("email") && <p style={{textAlign: "right", 
+        color: "#5e5e5e",
+      }}>{localStorage.getItem("email")}</p>}
+      </Container>
+      <Container
+        style={{
+          height: "85vh",
           overflowY: "scroll"
         }}
       >

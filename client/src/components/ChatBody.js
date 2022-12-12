@@ -4,6 +4,8 @@ import {
     Row,
     Col,
     Image,
+    Dropdown,
+    DropdownButton
 } from 'react-bootstrap';
 import { ArrowLeft } from 'react-bootstrap-icons';
 import { useNavigate } from "react-router-dom"
@@ -38,15 +40,15 @@ const ChatBody = (props) => {
                 console.log(err);
             }).then(
                 axios.get('http://localhost:4000/getRecv',
-                {
-                    params: {
-                        email: userEmail,
-                        room: window.location.href.split('?')[1].split('=')[1],
-                    }
-                })
-                .then((res) => {
-                   setRecipient(res.data)
-                })
+                    {
+                        params: {
+                            email: userEmail,
+                            room: window.location.href.split('?')[1].split('=')[1],
+                        }
+                    })
+                    .then((res) => {
+                        setRecipient(res.data)
+                    })
             )
     }, [])
 
@@ -67,12 +69,15 @@ const ChatBody = (props) => {
         navigate('/chat');
     };
 
+    const handleDeleteChat = () => {
+    }
+
     return (
         <>
             <Row>
                 <header className="chat__mainHeader">
                     <Col xs={2} lg={2}>
-                        <Button className="ms-2" variant="outline-secondary" onClick={() => navigate("/chat")}>
+                        <Button className="ms-2" variant="outline-secondary" onClick={handleLeaveChat}>
                             <ArrowLeft color="black" size={20} />
                         </Button>
                     </Col>
@@ -83,7 +88,22 @@ const ChatBody = (props) => {
                         <p className='mt-3 fw-bold'>{recipient}</p>
                     </Col>
                     <Col xs={5} lg={5}></Col>
-                    <Col xs={1} lg={1}><ThreeDotsVertical size={20} color="grey"></ThreeDotsVertical></Col>
+                    <Col xs={2} lg={1}>
+                        {/* Make a dropdown from ThreeDotsVertical */}
+                        <DropdownButton
+                            alignRight
+                            title={<ThreeDotsVertical />}
+                            id="dropdown-menu-align-right"
+                            variant="outline-secondary"
+                        >
+                            <Dropdown.Item eventKey="1"
+                                onClick={handleDeleteChat}
+                            >
+                                Delete Chat
+                            </Dropdown.Item>
+                        </DropdownButton>
+
+                    </Col>
                 </header>
             </Row>
             <div className="message__container">

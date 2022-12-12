@@ -31,18 +31,18 @@ const Profile = (props) => {
       return;
     }
     else {
+
       axios.get('http://localhost:4000/profileName',
         {
           params: {
             email: userEmail,
           }
         }).then((res) => {
-
-          if (res.fName !== "") {
+          if (res.data.fName !== "") {
             setFName(res.data.fName)
           }
 
-          if (res.lName !== "") {
+          if (res.data.lName !== "") {
             setLName(res.data.lName)
           }
 

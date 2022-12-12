@@ -5,7 +5,6 @@ const setNames = (req, res) => {
     fName = req.body.fName 
     lName = req.body.lName
 
-
     User.findOne({ email: userEmail }, (err, found) => {
         if (err) {
             console.log(err)
@@ -15,12 +14,12 @@ const setNames = (req, res) => {
             let nameChanged = false
 
             if (found !== null) {
-                if (newFound.firstName) {
+                if (newFound.firstName !== null) {
                     newFound.firstName = fName
                     nameChanged = true
                 }
                 
-                if (newFound.lastName) {
+                if (newFound.lastName !== null) {
                     newFound.lastName = lName
                     nameChanged = true
                 }

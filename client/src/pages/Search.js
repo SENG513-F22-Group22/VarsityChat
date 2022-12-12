@@ -32,13 +32,6 @@ const Search = ({ socket }) => {
       }
     }).then((res) => {
       setClasses(res.data.classes)
-      setClasses([
-        "CPSC 481",
-        "SENG 513",
-        "SENG 550",
-        "CPSC 413",
-        "CPSC 441"
-      ])
     }).catch((err) => {
       console.log(err)
     })

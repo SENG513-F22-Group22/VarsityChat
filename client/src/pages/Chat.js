@@ -20,7 +20,7 @@ const Chat = (props) => {
   const { socket, userEmail } = props
   const navigate = useNavigate()
   const [chats, setChats] = useState([])
-
+  const [loading, setLoading] = useState(true)
 
 
   useEffect(() => {
@@ -37,6 +37,7 @@ const Chat = (props) => {
       })
       .then((res) => {
         setChats(res.data);
+        setLoading(false)
       }).catch((err) => {
         console.log(err);
       })
@@ -92,7 +93,7 @@ const Chat = (props) => {
           <Col lg={6}>
             <Container id="chats-container">
               {/* Conversation "activeChat" objects are appended here. */}
-              {chats.map((chat) => (
+              {loading? <p>loading...</p> : chats.map((chat) => (
                 <ActiveChat
                 
                   name={chat.roomName}

@@ -20,6 +20,7 @@ const SearchResults = (props) => {
     const { socket, userEmail } = props
     const navigate = useNavigate()
     const [users, setUsers] = useState([])
+    const [loading, setLoading] = useState(true)
     const [filteredUsers, setFilteredUsers] = useState([])
 
     useEffect(() => {
@@ -41,6 +42,7 @@ const SearchResults = (props) => {
             }
             setUsers(validUsers)
             setFilteredUsers(validUsers)
+            setLoading(false)
         }).catch((err) => {
             console.log(err);
         })
@@ -99,7 +101,7 @@ const SearchResults = (props) => {
                 <Col xs={0} lg={3}></Col>
                 <Col lg={6}>
                     {/* This is where SearchProfileItems are appended */}
-                    {filteredUsers.map((user) => (
+                    {loading? <p>loading...</p> : filteredUsers.map((user) => (
                         <SearchProfileItem userEmail={userEmail} email={user.email} key={user._id} />
                     ))}
                 </Col>

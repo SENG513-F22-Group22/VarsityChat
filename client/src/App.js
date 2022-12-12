@@ -21,11 +21,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      {localStorage.getItem("email") && <p style={{
-        textAlign: "right",
-        color: "#5e5e5e",
-        paddingRight: "10px",
-      }}>{localStorage.getItem("email")}</p>}
       <Container
         style={{
           height: "85vh",

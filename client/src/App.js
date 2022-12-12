@@ -23,7 +23,7 @@ function App() {
     <BrowserRouter>
       <Container
         style={{
-          height: "85vh",
+          height: "90vh",
           overflowY: "scroll"
         }}
       >

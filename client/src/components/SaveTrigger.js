@@ -14,6 +14,7 @@ function SaveTrigger(props) {
         if (edit) {
             let newFName = ""
             let newLName = ""
+
             if (defaultFirstName !== fName) {
                 newFName = fName
             }
@@ -23,7 +24,6 @@ function SaveTrigger(props) {
             }
 
             try {
-
                 const response = axios.post('http://localhost:4000/profileName',
                             { email: userEmail,
                             fName: newFName,
@@ -31,7 +31,7 @@ function SaveTrigger(props) {
 
 
                 if (response.status === 200) {
-
+                    console.log("saved")
                 }
             } catch (err) {
                 alert("Error! Name was not set!")

@@ -144,7 +144,7 @@ const getClasses = (req, res) => {
             res.status(500).json({ error: "Internal server error" })
         }
         else if (found) {
-            res.status(200).json({ classes: found.classes })
+            res.status(200).json({ classes: found.courses })
         }
         else {
             res.status(404).json({ error: "User not found" })

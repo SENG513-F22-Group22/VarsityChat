@@ -49,6 +49,8 @@ const setMessages = (req, res) => {
                             const newFound = foundChatroom
                             const temp = found.slice()
                             newFound.lastmsg = temp.pop().contents
+                            recipientIndex = newFound.users[0] !== to ? 0 : 1
+                            newFound.unread[recipientIndex] = newFound.unread[recipientIndex] + 1
                             const temp2 = newFound.lastmsg
                             newFound.save((err) => {
                                 if (err) {
@@ -118,8 +120,8 @@ const getRoom = (req, res) => {
             const NewChatroom = new Chatroom({
                 roomName: user1 + " " + user2,
                 users: [user1, user2],
-                unread: 0,
-                lastmsg: "yo"
+                unread: [0,0],
+                lastmsg: ""
             })
 
             NewChatroom.save((err) => {
@@ -150,11 +152,31 @@ const getClasses = (req, res) => {
     })
 }
 
+const zeroUnreadMsgs = (req, res) => {
+
+    Chatroom.findOne({_id: req.body.room}, (err, found) => {
+        if (err) {
+            console.log(err)
+        }
+        else {
+            let newChatroom = found 
+            let userIndex = newChatroom.users[0] === userEmail ? 0 : 1
+            newChatroom.unread[userIndex] = 0
+            newChatroom.save((err) => {
+                if (err) {
+                    console.log(err)
+                }
+            })
+        }
+    })
+}
+
 module.exports = {
     getMessages,
     setMessages,
     getRooms,
     getRoom,
     getUsers,
-    getClasses
+    getClasses,
+    zeroUnreadMsgs
 }

@@ -5,7 +5,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import axios from 'axios'
 
 function SaveTrigger(props) {
-    const { edit, setEdit, fName, lName, userEmail, defualtFirstName, defaultLastName } = props
+    const { edit, setEdit, fName, lName, userEmail, defaultFirstName, defaultLastName } = props
     const [show, setShow] = useState(false);
     const [text, setText] = useState('Edit');
     const target = useRef(null);
@@ -14,7 +14,7 @@ function SaveTrigger(props) {
         if (edit) {
             let newFName = ""
             let newLName = ""
-            if (defualtFirstName !== fName) {
+            if (defaultFirstName !== fName) {
                 newFName = fName
             }
 

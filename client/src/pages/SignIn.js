@@ -40,17 +40,6 @@ const SignIn = (props) => {
   if (localStorage.getItem('email')) {
     setUserEmail(localStorage.getItem('email'))
     navigate('/chat')
-    //return 
-  // take user straight to chat, state might not be set properly 
-    //   <>
-    //     <a onClick={() => {
-    //       localStorage.removeItem('email')
-    //       setUserEmail("")
-    //       navigate('/')
-    //     }}
-    //     >Sign Out</a>
-    //   </>
-    // )
   }
 
   return (

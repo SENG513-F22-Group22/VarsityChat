@@ -160,7 +160,7 @@ const zeroUnreadMsgs = (req, res) => {
         }
         else {
             let newChatroom = found 
-            let userIndex = newChatroom.users[0] === userEmail ? 0 : 1
+            let userIndex = (newChatroom.users[0] === userEmail) ? 0 : 1
             newChatroom.unread[userIndex] = 0
             newChatroom.save((err) => {
                 if (err) {

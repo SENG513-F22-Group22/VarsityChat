@@ -10,7 +10,7 @@ function SaveTrigger(props) {
     const [text, setText] = useState('Edit');
     const target = useRef(null);
 
-    const handleClick = async () => {
+    const handleClick = () => {
         if (edit) {
             let newFName = ""
             let newLName = ""
@@ -24,7 +24,7 @@ function SaveTrigger(props) {
 
             try {
 
-                const response = await axios.post('http://localhost:4000/profileName',
+                const response = axios.post('http://localhost:4000/profileName',
                             { email: userEmail,
                             fName: newFName,
                             lName: newLName })

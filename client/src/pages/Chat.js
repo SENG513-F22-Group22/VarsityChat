@@ -92,9 +92,10 @@ const Chat = (props) => {
           <Col lg={6}>
             <Container id="chats-container">
               {/* Conversation "activeChat" objects are appended here. */}
+              {!chats.length && <p className='text-black-50 text-start ms-2 mt-2 mb-2 negative-margin-bottom'>No chats yet</p>}
               {chats.map((chat) => (
                 <ActiveChat
-                
+
                   name={chat.roomName}
                   lastMessage={chat.lastmsg}
                   unread={chat.unread[chat.users[0] === userEmail ? 0 : 1]}

@@ -12,9 +12,10 @@ import {
     Badge,
 } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom"
+import axios from 'axios'
 
 const ActiveChat = (props) => {
-    const { name, lastMessage, unread, room, setChats, socket } = props
+    const { name, lastMessage, unread, room, setChats, socket, userEmail } = props
     const navigate = useNavigate()
     const previewLength = 10
     const msgPreview = lastMessage.length > previewLength ? lastMessage.substring(0, previewLength) + '...' : lastMessage
@@ -30,15 +31,27 @@ const ActiveChat = (props) => {
     }
 
 
-
-
-
     socket.on('chat room', (data) => {
         setChats(data.chats);
     });
 
-    const handleClick = () => {
+    const handleClick = async () => {
         navigate('/chatroom?name=' + room)
+
+        try {
+            const response = await axios.post('http://localhost:4000/zeroUnread', {
+              userEmail,
+              room
+            })
+      
+            if (response.status === 200) {
+
+            }
+      
+          } catch (error) {
+            console.log(error)
+          }
+
     }
 
     return (

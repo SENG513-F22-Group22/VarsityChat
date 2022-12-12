@@ -14,15 +14,18 @@ const setNames = (req, res) => {
             const newFound = found
             let nameChanged = false
 
-            if (newFound.firstName) {
-                newFound.firstName = fName
-                nameChanged = true
+            if (found !== null) {
+                if (newFound.firstName) {
+                    newFound.firstName = fName
+                    nameChanged = true
+                }
+                
+                if (newFound.lastName) {
+                    newFound.lastName = lName
+                    nameChanged = true
+                }
             }
             
-            if (newFound.lastName) {
-                newFound.lastName = lName
-                nameChanged = true
-            }
             
             if (nameChanged) {
                 newFound.save(err, saved => {
@@ -47,8 +50,13 @@ const getNames = (req, res) => {
             console.log(err)
         }
         else {
-            let fName = found.firstName
-            let lName = found.lastName
+            let fName = ""
+            let lName = ""
+            if (found !== null) {
+                fName = found.firstName
+                lName = found.lastName
+            }
+            
             res.send({fName, lName})
         }
     })

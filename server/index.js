@@ -20,8 +20,8 @@ require("./socketManager.js")(serverSocket);
 
 const PORT = 4000;
 
-app.use(cors())
-app.use(bodyParser.json())
+app.use(cors());
+app.use(bodyParser.json());
 
 app.post("/signup", authorization.signup);
 app.post("/signin", authorization.signin);
@@ -33,16 +33,18 @@ app.get("/users", chats.getUsers);
 
 app.get("/messages", chats.getMessages);
 app.post("/messages", chats.setMessages);
+app.post("/zeroUnread", chats.zeroUnreadMsgs);
 
 app.get("/classes", chats.getClasses);
 
-app.get("/profileName", profile.getNames)
-app.post("/profileName", profile.setNames)
+
+app.get("/profileName", profile.getNames);
+app.post("/profileName", profile.setNames);
 
 // this is for the new Courses entry created for the database
 // it has the master list of all classes
-app.get("/courses", course.getAllCourses)
-app.post("/courses", course.addCourse)
+app.get("/courses", course.getAllCourses);
+app.post("/courses", course.addCourse);
 
 http.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

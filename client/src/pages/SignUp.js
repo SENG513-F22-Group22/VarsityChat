@@ -47,6 +47,7 @@ const SignUp = (props) => {
       if (response.status === 200) {
         localStorage.setItem('email', email)
         setUserEmail(email)
+        window.location.reload()
         navigate('/chat')
       }
     } catch (error) {

@@ -13,7 +13,7 @@ const SignIn = (props) => {
   const { socket, setUserEmail } = props
   const navigate = useNavigate()
 
-  
+
   const handleSignin = async (e) => {
     e.preventDefault()
     const email = e.target.emailInput.value
@@ -28,6 +28,7 @@ const SignIn = (props) => {
       if (response.status === 200) {
         localStorage.setItem('email', email)
         setUserEmail(email)
+        window.location.reload()
         navigate('/chat')
       }
 

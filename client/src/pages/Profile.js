@@ -53,6 +53,8 @@ const Profile = (props) => {
 
   const signOut = () => {
     localStorage.removeItem('email')
+    // force reload of page
+    window.location.reload()
     navigate('/')
   }
 
@@ -79,14 +81,14 @@ const Profile = (props) => {
           </Col>
           <Col xs={3} lg={1}></Col>
           <Col xs={3} lg={1}>
-            <SaveTrigger 
-            edit={edit} 
-            setEdit={setEdit} 
-            fName={fName} 
-            lName={lName} 
-            userEmail={userEmail} 
-            defaultFirstName={defaultFirstName}
-            defaultLastName={defaultLastName} />
+            <SaveTrigger
+              edit={edit}
+              setEdit={setEdit}
+              fName={fName}
+              lName={lName}
+              userEmail={userEmail}
+              defaultFirstName={defaultFirstName}
+              defaultLastName={defaultLastName} />
           </Col>
           <Col sm={0} lg={4}></Col>
         </Row>

@@ -24,7 +24,6 @@ const ChatBody = (props) => {
             {
                 params: {
                     room: window.location.href.split('?')[1].split('=')[1],
-
                 }
             })
             .then((res) => {
@@ -70,6 +69,19 @@ const ChatBody = (props) => {
     };
 
     const handleDeleteChat = () => {
+        axios.delete('http://localhost:4000/deleteChat',
+            {
+                params: {
+                    room: window.location.href.split('?')[1].split('=')[1],
+                    email: userEmail
+                }
+            })
+            .then((res) => {
+                navigate('/chat');
+            }).catch((err) => {
+                alert("Error deleting chat");
+                console.log(err);
+            })
     }
 
     return (

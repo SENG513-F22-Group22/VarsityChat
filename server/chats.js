@@ -171,6 +171,24 @@ const zeroUnreadMsgs = (req, res) => {
     })
 }
 
+const getRecipient = (req, res) => {
+    const userEmail = req.query.email
+    console.log(req.query.room)
+    Chatroom.findOne({ _id: req.query.room }, (err, found) => {
+        if (err) {
+            console.log(err)
+        }
+        else {
+            if (found !== null) {
+                recipient = found.users[found.users[0] === userEmail ? 1 : 0]
+                console.log(recipient)
+                res.send(recipient)
+            }
+            
+        }
+    })
+}
+
 module.exports = {
     getMessages,
     setMessages,
@@ -178,5 +196,6 @@ module.exports = {
     getRoom,
     getUsers,
     getClasses,
-    zeroUnreadMsgs
+    zeroUnreadMsgs,
+    getRecipient
 }

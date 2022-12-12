@@ -36,7 +36,7 @@ app.post("/messages", chats.setMessages);
 app.post("/zeroUnread", chats.zeroUnreadMsgs);
 
 app.get("/classes", chats.getClasses);
-
+app.get("/getRecv", chats.getRecipient)
 
 app.get("/profileName", profile.getNames);
 app.post("/profileName", profile.setNames);

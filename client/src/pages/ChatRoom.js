@@ -49,6 +49,7 @@ const ChatRoom = (props) => {
         socket={socket}
         messages={messages}
         setMessages={setMessages}
+        userEmail={userEmail}
       />
       <ChatFooter
         socket={socket}

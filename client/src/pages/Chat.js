@@ -67,14 +67,14 @@ const Chat = (props) => {
         <Row>
           <Col xs={0} lg={3}></Col>
           <Col lg={6}>
-            <Form className="d-flex mx-3">
+            {/* <Form className="d-flex mx-3">
               <Form.Control
                 type="search"
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
               />
-            </Form>
+            </Form> */}
           </Col>
           <Col xs={0} lg={3}></Col>
         </Row>

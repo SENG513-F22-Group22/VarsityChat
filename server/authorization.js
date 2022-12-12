@@ -2,9 +2,6 @@ const { User, Course } = require("./database.js")
 
 const signup = (req, res) => {
     const { email, password } = req.body
-    // let courses = getAllCourses()
-    // console.log(courses)
-    // courses = ""
     let courses = []
     
 
@@ -23,9 +20,9 @@ const signup = (req, res) => {
                     console.log(err)
                 }
                 found.sort(() => (Math.random() > 0.5) ? 1 : -1)
-                courses = found.slice(0, 5)
-
-                console.log(courses)
+                for (let i = 0; i < 5; i++) {
+                    courses.push(found[i].courseName)
+                }
 
                 const newUser = new User({
                     email,

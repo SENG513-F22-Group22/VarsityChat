@@ -12,9 +12,9 @@ import axios from 'axios';
 import { ThreeDotsVertical } from 'react-bootstrap-icons';
 
 const ChatBody = (props) => {
-    const { socket, messages, setMessages } = props
+    const { socket, messages, setMessages, userEmail } = props
     const navigate = useNavigate();
-
+    const [recipient, setRecipient] = useState("")
 
 
     useEffect(() => {
@@ -36,7 +36,18 @@ const ChatBody = (props) => {
                 }, 100);
             }).catch((err) => {
                 console.log(err);
-            })
+            }).then(
+                axios.get('http://localhost:4000/getRecv',
+                {
+                    params: {
+                        email: userEmail,
+                        room: window.location.href.split('?')[1].split('=')[1],
+                    }
+                })
+                .then((res) => {
+                   setRecipient(res.data)
+                })
+            )
     }, [])
 
 
@@ -69,7 +80,7 @@ const ChatBody = (props) => {
                         <Image src="default_prof.png" className="align-middle rounded-circle" width="50"></Image>
                     </Col>
                     <Col xs={1} lg={1}>
-                        <p className='mt-3 fw-bold'>"Name"</p>
+                        <p className='mt-3 fw-bold'>{recipient}</p>
                     </Col>
                     <Col xs={5} lg={5}></Col>
                     <Col xs={1} lg={1}><ThreeDotsVertical size={20} color="grey"></ThreeDotsVertical></Col>

@@ -174,6 +174,7 @@ const zeroUnreadMsgs = (req, res) => {
     Chatroom.findOne({ _id: req.body.room }, (err, found) => {
         if (err) {
             console.log(err)
+            res.status(500).json({ error: "Internal server error" })
         }
         else {
             let newChatroom = found
@@ -183,6 +184,7 @@ const zeroUnreadMsgs = (req, res) => {
                 if (err) {
                     console.log(err)
                 }
+                res.status(200).send()
             })
         }
     })

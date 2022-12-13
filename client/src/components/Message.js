@@ -1,24 +1,23 @@
-import React from 'react';
-import {
-
-} from 'react-bootstrap';
+import React from "react";
+import {} from "react-bootstrap";
 
 const Message = ({ from, contents, time }) => {
-    return (
-        <>
-            <div className="message__chats">
-                <p>{from}</p>
-                <div
-                    className={
-                        from === localStorage.getItem('email') ?
-                            "message__sender" :
-                            "message__recipient"}
-                >
-                    <p>{contents}</p>
-                </div>
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div className="message__chats">
+        <p>{from}</p>
+        <div
+          className={
+            from === localStorage.getItem("email")
+              ? "message__sender"
+              : "message__recipient"
+          }
+        >
+          <p>{contents}</p>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Message;

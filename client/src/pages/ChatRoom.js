@@ -1,47 +1,43 @@
 "use strict";
-import React, { useState, useEffect } from 'react'
-import { ChevronRight } from 'react-bootstrap-icons';
+import React, { useState, useEffect } from "react";
+import { ChevronRight } from "react-bootstrap-icons";
 // Import components here from https://react-bootstrap.github.io/layout/grid/
-import {
-
-} from 'react-bootstrap';
-import axios from 'axios'
-import { useNavigate } from "react-router-dom"
-import ChatBody from '../components/ChatBody';
-import ChatFooter from '../components/ChatFooter';
+import {} from "react-bootstrap";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import ChatBody from "../components/ChatBody";
+import ChatFooter from "../components/ChatFooter";
 
 const ChatRoom = (props) => {
-  const { socket, userEmail } = props
-  const navigate = useNavigate()
-  const [messages, setMessages] = useState([])
-  const room = window.location.href.split('?')[1].split('=')[1]
-
+  const { socket, userEmail } = props;
+  const navigate = useNavigate();
+  const [messages, setMessages] = useState([]);
+  const room = window.location.href.split("?")[1].split("=")[1];
 
   useEffect(() => {
-    if (!localStorage.getItem('email')) {
-      navigate('/')
+    if (!localStorage.getItem("email")) {
+      navigate("/");
       return;
     }
 
     // ensure we're only in one room at a time
-    socket.disconnect()
-    socket.connect()
-    socket.emit('join', room)
+    socket.disconnect();
+    socket.connect();
+    socket.emit("join", room);
 
-    axios.get('http://localhost:4000/messages',
-      {
+    axios
+      .get("http://localhost:4000/messages", {
         params: {
-          room: room
-        }
+          room: room,
+        },
       })
       .then((res) => {
         setMessages(res.data);
-
-      }).catch((err) => {
-        console.log(err);
       })
-  }, [room, socket])
-
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [room, socket]);
 
   return (
     <>
@@ -58,7 +54,7 @@ const ChatRoom = (props) => {
         userEmail={userEmail}
       />
     </>
-  )
-}
+  );
+};
 
-export default ChatRoom
+export default ChatRoom;

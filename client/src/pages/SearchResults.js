@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // Import components here from https://react-bootstrap.github.io/layout/grid/
-import { Container, Row, Col, Form, ListGroup, Button } from "react-bootstrap";
+import axios from "axios";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { ArrowLeft } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import SearchProfileItem from "../components/SearchProfileItem";
-import { ArrowLeft } from "react-bootstrap-icons";
-import { ChatFill } from "react-bootstrap-icons";
-import { Image } from "react-bootstrap-icons";
-import axios from "axios";
 
 const SearchResults = (props) => {
   const { socket, userEmail } = props;

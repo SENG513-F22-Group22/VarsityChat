@@ -1,8 +1,5 @@
-"use strict";
-import React, { useState, useEffect } from "react";
-import { ChevronRight } from "react-bootstrap-icons";
+import React, { useEffect, useState } from "react";
 // Import components here from https://react-bootstrap.github.io/layout/grid/
-import {} from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ChatBody from "../components/ChatBody";

@@ -1,20 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { ChevronRight } from "react-bootstrap-icons";
+import React, { useEffect, useState } from "react";
 // Import components here from https://react-bootstrap.github.io/layout/grid/
-import {
-  Button,
-  Card,
-  Container,
-  Row,
-  Col,
-  ButtonGroup,
-  Form,
-  Image,
-  Badge,
-} from "react-bootstrap";
+import axios from "axios";
+import { Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import ActiveChat from "../components/ActiveChat";
-import axios from "axios";
 
 const Chat = (props) => {
   const { socket, userEmail } = props;

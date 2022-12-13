@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Row, Col, Image } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import { ChatFill } from "react-bootstrap-icons";
 import axios from "axios";
+import React from "react";
+import { Col, Image, Row } from "react-bootstrap";
+import { ChatFill } from "react-bootstrap-icons";
+import { useNavigate } from "react-router-dom";
 
 const SearchProfileItem = (props) => {
   const { email, userEmail } = props;

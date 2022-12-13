@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Send } from "react-bootstrap-icons";
-import {} from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import {} from "react-bootstrap";
+import { Send } from "react-bootstrap-icons";
 
 const ChatFooter = (props) => {
   const { socket, room, setMessages, userEmail } = props;

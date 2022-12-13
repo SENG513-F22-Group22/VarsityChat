@@ -1,18 +1,8 @@
-import React, { useState } from "react";
-import { ChevronRight } from "react-bootstrap-icons";
-import {
-  Button,
-  Card,
-  Container,
-  Row,
-  Col,
-  ButtonGroup,
-  Form,
-  Image,
-  Badge,
-} from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import React from "react";
+import { Badge, Col, Image, Row } from "react-bootstrap";
+import { ChevronRight } from "react-bootstrap-icons";
+import { useNavigate } from "react-router-dom";
 
 const ActiveChat = (props) => {
   const { name, lastMessage, unread, room, setChats, socket, userEmail } =

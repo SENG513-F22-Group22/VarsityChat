@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import {
   Button,
-  Row,
   Col,
-  Image,
   Dropdown,
   DropdownButton,
+  Image,
+  Row,
 } from "react-bootstrap";
-import { ArrowLeft } from "react-bootstrap-icons";
+import { ArrowLeft, ThreeDotsVertical } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import Message from "./Message";
-import axios from "axios";
-import { ThreeDotsVertical } from "react-bootstrap-icons";
 
 const ChatBody = (props) => {
   const { socket, messages, setMessages, userEmail } = props;

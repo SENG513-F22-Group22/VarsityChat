@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
+import { Col, Row } from "react-bootstrap";
 import { ChevronRight } from "react-bootstrap-icons";
-import { Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const ClassSearchItem = ({ courseName }) => {

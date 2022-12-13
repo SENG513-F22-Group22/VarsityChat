@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 // Import components here from https://react-bootstrap.github.io/layout/grid/
-import { Button, Card, ButtonGroup, Container } from "react-bootstrap";
+import { Button, ButtonGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 export default function BottomNav() {

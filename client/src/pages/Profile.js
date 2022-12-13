@@ -1,20 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // Import components here from https://react-bootstrap.github.io/layout/grid/
-import {
-  Button,
-  Card,
-  Container,
-  Row,
-  ButtonGroup,
-  Col,
-  Image,
-  Form,
-  OverlayTrigger,
-  Tooltip,
-} from "react-bootstrap";
+import axios from "axios";
+import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import SaveTrigger from "../components/SaveTrigger";
-import axios from "axios";
 
 const Profile = (props) => {
   const { socket, userEmail } = props;

@@ -1,19 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // Import components here from https://react-bootstrap.github.io/layout/grid/
-import {
-  Button,
-  Card,
-  Container,
-  Row,
-  Col,
-  ButtonGroup,
-  Form,
-  ListGroup,
-} from "react-bootstrap";
+import axios from "axios";
+import { Col, Container, ListGroup, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import ClassSearchItem from "../components/ClassSearchItem";
-import { ChevronRight } from "react-bootstrap-icons";
-import axios from "axios";
 
 const Search = ({ socket }) => {
   const [classes, setClasses] = useState([]);

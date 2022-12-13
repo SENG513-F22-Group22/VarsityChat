@@ -20,7 +20,7 @@ const Chat = (props) => {
   const { socket, userEmail } = props
   const navigate = useNavigate()
   const [chats, setChats] = useState([])
-
+  const [loading, setLoading] = useState(true)
 
 
   useEffect(() => {
@@ -37,6 +37,7 @@ const Chat = (props) => {
       })
       .then((res) => {
         setChats(res.data);
+        setLoading(false)
       }).catch((err) => {
         console.log(err);
       })
@@ -92,22 +93,21 @@ const Chat = (props) => {
           <Col lg={6}>
             <Container id="chats-container">
               {/* Conversation "activeChat" objects are appended here. */}
-              {!chats.length && <p className='text-black-50 text-start ms-2 mt-2 mb-2 negative-margin-bottom'>No chats yet</p>}
-              {chats.map((chat) => (
-                <ActiveChat
-
-                  name={chat.roomName}
-                  lastMessage={chat.lastmsg}
-                  unread={chat.unread[chat.users[0] === userEmail ? 0 : 1]}
-                  socket={socket}
-                  key={chat._id}
-                  room={chat._id}
-                  setChats={setChats}
-                  userEmail={userEmail}
-                />
-              ))}
-
-
+              {loading ? <h1>Loading...</h1> :
+                chats.length === 0 ? <p>No chats</p> :
+                  chats.map((chat) =>
+                    <ActiveChat
+                      name={chat.roomName}
+                      lastMessage={chat.lastmsg}
+                      unread={chat.unread[chat.users[0] === userEmail ? 0 : 1]}
+                      socket={socket}
+                      key={chat._id}
+                      room={chat._id}
+                      userEmail={userEmail}
+                      setChats={setChats}
+                    />
+                  )
+              }
             </Container>
           </Col>
           <Col xs={0} lg={3}></Col>

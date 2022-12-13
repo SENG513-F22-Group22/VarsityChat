@@ -17,6 +17,7 @@ import axios from 'axios';
 
 const Search = ({ socket }) => {
   const [classes, setClasses] = useState([])
+  const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -32,6 +33,7 @@ const Search = ({ socket }) => {
       }
     }).then((res) => {
       setClasses(res.data.classes)
+      setLoading(false)
     }).catch((err) => {
       console.log(err)
     })
@@ -63,7 +65,7 @@ const Search = ({ socket }) => {
           <Col lg={6}>
             {/* This is where ClassSearchItems are appended */}
             <ListGroup id="SearchClassSelection" variant="flush">
-              {classes.map((course) => (
+              {loading? <p>loading...</p> : classes.map((course) => (
                 <ListGroup.Item key={course}>
                   <ClassSearchItem
                     courseName={course}

@@ -24,7 +24,6 @@ const ChatBody = (props) => {
             {
                 params: {
                     room: window.location.href.split('?')[1].split('=')[1],
-
                 }
             })
             .then((res) => {

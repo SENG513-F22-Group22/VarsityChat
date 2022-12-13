@@ -104,7 +104,6 @@ const ChatBody = (props) => {
                     <Col xs={1} lg={1}>
                         {/* Make a dropdown with ThreeDotsVertical */}
                         <DropdownButton
-                            alignRight
                             title={<ThreeDotsVertical />}
                             id="dropdown-menu-align-right"
                             variant="outline-secondary"

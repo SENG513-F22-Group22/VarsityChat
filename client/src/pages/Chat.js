@@ -93,21 +93,21 @@ const Chat = (props) => {
           <Col lg={6}>
             <Container id="chats-container">
               {/* Conversation "activeChat" objects are appended here. */}
-              {loading? <p>loading...</p> : chats.map((chat) => (
-                <ActiveChat
-                
-                  name={chat.roomName}
-                  lastMessage={chat.lastmsg}
-                  unread={chat.unread[chat.users[0] === userEmail ? 0 : 1]}
-                  socket={socket}
-                  key={chat._id}
-                  room={chat._id}
-                  setChats={setChats}
-                  userEmail={userEmail}
-                />
-              ))}
-
-
+              {loading ? <h1>Loading...</h1> :
+                chats.length === 0 ? <p>No chats</p> :
+                  chats.map((chat) =>
+                    <ActiveChat
+                      name={chat.roomName}
+                      lastMessage={chat.lastmsg}
+                      unread={chat.unread[chat.users[0] === userEmail ? 0 : 1]}
+                      socket={socket}
+                      key={chat._id}
+                      room={chat._id}
+                      userEmail={userEmail}
+                      setChats={setChats}
+                    />
+                  )
+              }
             </Container>
           </Col>
           <Col xs={0} lg={3}></Col>

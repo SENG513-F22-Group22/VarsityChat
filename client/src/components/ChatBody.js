@@ -5,7 +5,7 @@ import {
     Col,
     Image,
     Dropdown,
-    DropdownButton
+    DropdownButton,
 } from 'react-bootstrap';
 import { ArrowLeft } from 'react-bootstrap-icons';
 import { useNavigate } from "react-router-dom"
@@ -74,15 +74,16 @@ const ChatBody = (props) => {
                 params: {
                     room: window.location.href.split('?')[1].split('=')[1],
                     email: userEmail
-                }
+                },
             })
             .then((res) => {
                 navigate('/chat');
             }).catch((err) => {
-                alert("Error deleting chat");
                 console.log(err);
+                alert('Error deleting chat');
             })
-    }
+    };
+
 
     return (
         <>
@@ -100,21 +101,17 @@ const ChatBody = (props) => {
                         <p className='mt-3 fw-bold'>{recipient}</p>
                     </Col>
                     <Col xs={5} lg={5}></Col>
-                    <Col xs={2} lg={1}>
-                        {/* Make a dropdown from ThreeDotsVertical */}
+                    <Col xs={1} lg={1}>
+                        {/* Make a dropdown with ThreeDotsVertical */}
                         <DropdownButton
                             alignRight
                             title={<ThreeDotsVertical />}
                             id="dropdown-menu-align-right"
                             variant="outline-secondary"
+                            className="mt-2"
                         >
-                            <Dropdown.Item eventKey="1"
-                                onClick={handleDeleteChat}
-                            >
-                                Delete Chat
-                            </Dropdown.Item>
+                            <Dropdown.Item eventKey="1" onClick={handleDeleteChat}>Delete Chat</Dropdown.Item>
                         </DropdownButton>
-
                     </Col>
                 </header>
             </Row>

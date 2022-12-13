@@ -91,16 +91,17 @@ const getRooms = (req, res) => {
 
 const deleteChatroom = (req, res) => {
     const roomID = req.query.room
-    Chatroom.findByIdAndRemove({_id: roomID}, (err, found) => {
-    if (err) {
-        res.status(500).json({error: "Internal server error"})
-    }
-    if (found) {
-        res.status(200).json({room: found._id})
-        // TODO delete all messages associated to that room
-    }})
+    Chatroom.findByIdAndRemove({ _id: roomID }, (err, found) => {
+        if (err) {
+            res.status(500).json({ error: "Internal server error" })
+        }
+        if (found) {
+            res.status(200).json({ room: found._id })
+            // TODO delete all messages associated to that room
+        }
+    })
 }
-    
+
 
 
 
@@ -134,7 +135,7 @@ const getRoom = (req, res) => {
             const NewChatroom = new Chatroom({
                 roomName: user1 + " " + user2,
                 users: [user1, user2],
-                unread: [0,0],
+                unread: [0, 0],
                 lastmsg: ""
             })
 
@@ -167,13 +168,15 @@ const getClasses = (req, res) => {
 }
 
 const zeroUnreadMsgs = (req, res) => {
-    const userEmail = req.query.email
-    Chatroom.findOne({_id: req.body.room}, (err, found) => {
+
+    const { userEmail } = req.body
+
+    Chatroom.findOne({ _id: req.body.room }, (err, found) => {
         if (err) {
             console.log(err)
         }
         else {
-            let newChatroom = found 
+            let newChatroom = found
             let userIndex = (newChatroom.users[0] === userEmail) ? 0 : 1
             newChatroom.unread[userIndex] = 0
             newChatroom.save((err) => {
@@ -198,7 +201,7 @@ const getRecipient = (req, res) => {
                 console.log(recipient)
                 res.send(recipient)
             }
-            
+
         }
     })
 }

@@ -22,5 +22,5 @@ For those that have not developed node applications before: to run the applicati
 ---
 ##### UI Mockups: [Figma](https://www.figma.com/file/uic5YcLmnPO5t8RHvlQJJn/SENG-513-Mockups?node-id=31112%3A20249&t=5RpkP2Zhms4asMDj-1) 
 ##### Project Proposal: [Google Docs](https://docs.google.com/document/d/1sD819a7_4Zo-hMr9_804emo1XnkX0FCMvIyLQHQ0u-I/edit)
-
+##### Final Project Report: [Google Docs](https://docs.google.com/document/d/1JKNHjXyuQ-U6OojzCPAA09yfymA_e2SD5WQiLdcFZ9c/edit)
 

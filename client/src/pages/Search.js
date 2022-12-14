@@ -64,7 +64,9 @@ const Search = ({ socket }) => {
                 <p>loading...</p>
               ) : (
                 classes.map((course) => (
-                  <ListGroup.Item key={course}>
+                  <ListGroup.Item key={course}
+                    style={{ cursor: "pointer" }}
+                  >
                     <ClassSearchItem courseName={course} key={course} />
                   </ListGroup.Item>
                 ))
